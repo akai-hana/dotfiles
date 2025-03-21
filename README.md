@@ -1,2 +1,2 @@
 # dotfiles
-akai's lastest dotfiles.
+akai_hana's latest dotfiles. :)
