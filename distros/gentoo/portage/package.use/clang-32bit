@@ -1,0 +1,2 @@
+# move sys-devel/clang llvm-core/clang
+llvm-core/clang -abi_x86_32

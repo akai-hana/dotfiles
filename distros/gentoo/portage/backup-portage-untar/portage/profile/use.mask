@@ -1,0 +1,9 @@
+# very experimental rust flags
+-big-endian
+-parallel-compiler
+
+# firefox
+-system-python-libs
+
+# gcc
+-custom-cflags

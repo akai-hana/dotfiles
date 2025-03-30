@@ -1,0 +1,7 @@
+# Resonite
+>=sys-devel/gcc-4.6.0
+>=sys-devel/gcc-4.6.0[cxx]
+>=sys-libs/glibc-2.15
+app-arch/bzip2[abi_x86_64]
+media-libs/libpng:0/16[abi_x86_64]
+sys-libs/zlib[abi_x86_64]

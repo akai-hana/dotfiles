@@ -1,0 +1,34 @@
+# created by eselect-repo
+
+[guru]
+location = /var/db/repos/guru
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/guru.git
+
+
+
+
+
+
+
+
+
+[mv]
+location = /var/db/repos/mv
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/mv.git
+
+[bentoo]
+location = /var/db/repos/bentoo
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/bentoo.git
+
+[schplaf]
+location = /var/db/repos/schplaf
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/schplaf.git
+
+[amano-kenji]
+location = /var/db/repos/amano-kenji
+sync-type = git
+sync-uri = https://codeberg.org/amano.kenji/gentoo-overlay.git

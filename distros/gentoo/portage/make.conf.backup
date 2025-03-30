@@ -1,0 +1,81 @@
+MAKEOPTS="-j24 -l12"
+EMERGE_DEFAULT_OPTS="--jobs=16 --load-average=16 --with-bdeps=y --keep-going --autounmask --autounmask-write --quiet-build=y --rebuilt-binaries=n --verbose --verbose-conflicts"
+
+FEATURES="parallel-fetch parallel-install binpkg-multi-instance ebuild-locks -merge-wait"
+FEATURES="${FEATURES} unmerge-orphans noman nodoc noinfo"
+FEATURES="${FEATURES} candy" # for the memes
+
+# '-flto', '-fomit-frame-pointer' and '-fno-plt' break gentoo-kernel compilation
+# '-ffunction-sections' and '-fdata-sections' make the kernel unbootable
+# -fno-asynchronous-unwind-tables breaks luajit, which in turn breaks nvim and mpv
+
+#COMMON="${AGGRESSIVE} ${PASSIVE}"
+#COMMON="${COMMON} ${LTO} ${GRAPHITE}"
+#COMMON="${COMMON} ${SAFEST_FAST_MATH} ${CUSTOM_MARCH}"
+COMMON="-O3 -fipa-pta -march=native -pipe -flto -fuse-linker-plugin -fno-fat-lto-objects -fgraphite-identity -floop-nest-optimize -floop-interchange -ftree-loop-distribution -floop-strip-mine -floop-block -ffast-math -fcf-protection=none -fvtable-verify=none -fno-plt -fomit-frame-pointer -ffunction-sections -fdata-sections"
+
+#FALLBACK# COMMON="-march=native -pipe -O3 -fipa-pta -flto -fuse-linker-plugin -ffast-math -fcf-protection=none -fvtable-verify=none"
+
+CFLAGS="${COMMON}"
+CXXFLAGS="${COMMON}"
+FCFLAGS="${COMMON}"
+FFLAGS="${COMMON}"
+KCFLAGS="${COMMON}" # KCFLAGS wasn't by default on make.conf?
+
+#LDFLAGS="-Wl,-O3 -Wl,--as-needed -Wl,--sort-common -Wl,-flto"
+# }
+#USERFLAGS#
+USE="X xorg xephyr -systemd openrc elogind -kde -gnome -wayland pam udev wifi firmware" # core system
+USE="${USE} pc libinput libnotify ffmpeg vulkan vulkan-overlay layers video_cards_radeon emacs unwind cxx" # secondary system
+USE="${USE} proprietary-codecs widevine openh264 vaapi grub" # video
+USE="${USE} -pulseaudio pipewire pipewire-alsa sound-server alsa jack jack-client openal gstreamer -oss -opus -vorbis -portaudio" # audio
+USE="${USE} -bluetooth -bluetooth-extra-codecs -native-headset -ofono-headset -coreaudio" # no bluetooth
+USE="${USE} bluray -dvd -dvdr -dvdnav -videorecorder" # no dvd
+USE="${USE} lto graphite resize-optimization" # optimization
+USE="${USE} -qt5 staging nightly experimental jumbo-build -ccache" # bleeding edge/experimental, aggressive resource utilization at compilation
+USE="${USE} -webengine -cups -samba -printsupport -thunderbolt -infiniband haptic joystick" # debloating
+USE="${USE} -accessibility -firewall -telemetry -deprecated -branding -man -handbook-pdf -gtk-doc -examples -wallpapers"
+USE="${USE} policykit gntils openssl -clamav -spell -hunspell -telepathy -aqua -xinerama -ibm -smartcard -modemmanager -openconnect"
+USE="${USE} -bindist system-toolchain system-llvm system-python-libs system-png system-jpg system-harfbuzz system-icu system-zstd" # un-blob
+USE="${USE} -pie -hardened -extra-hardened -apparmor" # de-hardening
+USE="${USE} bore-sched-ext preempt_full llvm-lto-full -llvm-lto-thin kcfi cachyos-rules" # kernel-related
+USE="${USE} proton rar -autoupdate -antibot -server discord-presence discord jetbrainsmono vim-syntax nvimpager savedconfig dhcpcd" # others
+USE="${USE} offensive" # for the memes
+USE="${USE} ancient brahmi coptic cuneiform cypriot deseret duployan hieroglyphs linear music old-arabian pau-cin-hau phagspa runic webp"
+
+#UNMODIFIABLE#
+VIDEO_CARDS="amdgpu" # hybrid gpu laptop
+L10N="en en_US en-us en-US"
+RUSTFLAGS="-C target-cpu=native -C strip=symbols -C embed-bitcode=yes -C codegen-units=16 -C debuginfo=0"
+LLVM_TARGETS="AMDGPU" 
+
+CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sha sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3 vpclmulqdq"
+
+# make portage not slow down system's responsiveness
+PORTAGE_SCHEDULING_POLICY="idle"
+PORTAGE_NICENESS="19"
+PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"
+
+# remove the annoying portage warnings when unmerging or cleaning
+EMERGE_WARNING_DELAY=0
+CLEAN_DELAY=0
+
+# some stuff I probably won't change ever again
+LC_MESSAGES=C.utf8
+INSTALL_MASK="/usr/share/locale/en"
+
+ACCEPT_KEYWORDS="~amd64" # sorry linus
+ACCEPT_LICENSE="*"       # sorry stallman
+
+C_MESSAGES=C.utf8
+GRUB_PLATFORMS="efi-64"
+
+# my personal overlay
+PORTDIR_OVERLAY="/usr/local/portage"
+
+# mirrorselect -s 5
+GENTOO_MIRRORS="https://ftp.fau.de/gentoo \
+    http://212.110.163.13/gentoo/ \
+    https://ftp.halifax.rwth-aachen.de/gentoo/ \
+    http://ftp-stud.hs-esslingen.de/pub/Mirrors/gentoo/ \
+    http://mirror.bytemark.co.uk/gentoo/"

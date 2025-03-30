@@ -1,0 +1,58 @@
+# created by eselect-repo
+
+
+[guru]
+location = /var/db/repos/guru
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/guru.git
+
+[steam-overlay]
+location = /var/db/repos/steam-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/steam-overlay.git
+
+[inode64-overlay]
+location = /var/db/repos/inode64-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/inode64-overlay.git
+
+[Miezhiko]
+location = /var/db/repos/Miezhiko
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/Miezhiko.git
+
+[gentoo-zh]
+location = /var/db/repos/gentoo-zh
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/gentoo-zh.git
+
+[tatsh-overlay]
+location = /var/db/repos/tatsh-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/tatsh-overlay.git
+
+[xarblu-overlay]
+location = /var/db/repos/xarblu-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/xarblu-overlay.git
+
+[average]
+location = /var/db/repos/average
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/average.git
+
+
+[FireBurn]
+location = /var/db/repos/FireBurn
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/FireBurn.git
+
+[mv]
+location = /var/db/repos/mv
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/mv.git
+
+[thegreatmcpain]
+location = /var/db/repos/thegreatmcpain
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/thegreatmcpain.git
