@@ -1,0 +1,13 @@
+*/*::steam-overlay
+games-util/game-device-udev-rules
+sys-libs/libudev-compat
+# required by osu-lazer (argument)
+=games-arcade/osu-lazer-9999 **
+# required by sys-kernel/scx-1.0.8::gentoo
+# required by @selected
+# required by @world (argument)
+=dev-util/bpftool-9999 **
+# required by adwaita-dark-amoled (argument)
+=x11-themes/adwaita-dark-amoled-9999 **
+# required by ladybird (argument)
+=www-client/ladybird-9999 **

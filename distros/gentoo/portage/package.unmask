@@ -1,0 +1,64 @@
+# required by virtual/libc-1-r1::gentoo
+# required by @selected
+# required by @world (argument)
+# /var/db/repos/gentoo/profiles/package.mask:
+# Andreas K. Hüttel <dilfridge@gentoo.org> (2017-05-21)
+# (and others, updated later)
+# These old versions of toolchain packages (binutils, gcc, glibc) are no
+# longer officially supported and are not suitable for general use. Using
+# these packages can result in build failures (and possible breakage) for
+# many packages, and may leave your system vulnerable to known security
+# exploits.
+# If you still use one of these old toolchain packages, please upgrade (and
+# switch the compiler / the binutils) ASAP. If you need them for a specific
+# (isolated) use case, feel free to unmask them on your system.
+=sys-libs/glibc-2.37-r10
+# required by virtual/libc-1-r1::gentoo
+# required by @selected
+# required by @world (argument)
+# /var/db/repos/gentoo/profiles/package.mask:
+# Andreas K. Hüttel <dilfridge@gentoo.org> (2017-05-21)
+# (and others, updated later)
+# These old versions of toolchain packages (binutils, gcc, glibc) are no
+# longer officially supported and are not suitable for general use. Using
+# these packages can result in build failures (and possible breakage) for
+# many packages, and may leave your system vulnerable to known security
+# exploits.
+# If you still use one of these old toolchain packages, please upgrade (and
+# switch the compiler / the binutils) ASAP. If you need them for a specific
+# (isolated) use case, feel free to unmask them on your system.
+=sys-libs/glibc-2.36-r8
+# required by virtual/libc-1-r1::gentoo
+# required by @selected
+# required by @world (argument)
+# /var/db/repos/gentoo/profiles/package.mask:
+# Andreas K. Hüttel <dilfridge@gentoo.org> (2017-05-21)
+# (and others, updated later)
+# These old versions of toolchain packages (binutils, gcc, glibc) are no
+# longer officially supported and are not suitable for general use. Using
+# these packages can result in build failures (and possible breakage) for
+# many packages, and may leave your system vulnerable to known security
+# exploits.
+# If you still use one of these old toolchain packages, please upgrade (and
+# switch the compiler / the binutils) ASAP. If you need them for a specific
+# (isolated) use case, feel free to unmask them on your system.
+=sys-libs/glibc-2.35-r11
+# required by steam-client-meta (argument)
+# /var/db/repos/steam-overlay/profiles/package.mask:
+# James Le Cuirot <chewi@gentoo.org> (2024-04-26)
+# Superseded by games-util/steam-launcher for simplicity. Removal on 2024-05-29.
+=games-util/steam-client-meta-0-r20231231
+# required by steam-meta (argument)
+# /var/db/repos/steam-overlay/profiles/package.mask:
+# James Le Cuirot <chewi@gentoo.org> (2024-04-26)
+# Superseded by games-util/steam-launcher for simplicity. Removal on 2024-05-29.
+=games-util/steam-meta-0-r20220320
+# required by games-emulation/dolphin-5.0_p20231117::FireBurn
+# required by games-emulation/dolphin (argument)
+# /var/db/repos/gentoo/profiles/package.mask:
+# Sam James <sam@gentoo.org> (2023-05-10)
+# Lots of package breakage as usual for new versions. Masked until most/all
+# reverse dependencies are fixed. Tracker bug is bug #906077.
+=dev-libs/libfmt-11.0.1
+# balena-etcher without getting all the junk from bentoo in -akai
+sys-boot/etcher-bin

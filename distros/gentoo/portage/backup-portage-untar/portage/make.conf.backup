@@ -1,0 +1,151 @@
+# ~ akai_hana's custom USE flags! ~ #
+
+### thingies i change often so they're up here {{{
+MAKEOPTS="-j16 -l16"
+EMERGE_DEFAULT_OPTS="--jobs 16 --load-average=16 --with-bdeps=y --keep-going --autounmask-write --quiet-build=y --rebuilt-binaries=n --verbose"
+FEATURES="parallel-fetch parallel-install"
+FEATURES="${FEATURES} candy" # meme flag
+
+### }}}
+
+### COMPILER OPTIMIZATIONS {{{
+
+# my custom experimental flags
+AKAI_FLAGS="-O3 -pipe -march=native -fgraphite-identity -floop-interchange -floop-nest-optimize -floop-parallelize-all -fipa-pta -fno-math-errno -fno-asynchronous-unwind-tables -fdevirtualize-at-ltrans -fsched-pressure -fivopts -fmodulo-sched -fmodulo-sched-allow-regmoves -fuse-linker-plugin"
+
+# safe flags (fallback)
+# AKAI_FLAGS="-O2 -pipe"
+
+# default march native flags
+MARCH_NATIVE="-march=native"
+
+# flags that I altered their values from the defaults, mostly security-oriented flags, to gain a bit extra juice, sacrificing security that I don't really need.
+CUSTOM_MARCH="-fcf-protection=none -fvtable-verify=none"
+
+COMMON="${AKAI_FLAGS} ${MARCH_NATIVE} ${CUSTOM_MARCH_NATIVE}"
+
+# '-flto', '-fomit-frame-pointer' and '-fno-plt' break gentoo-kernel compilation
+# '-ffunction-sections' and '-fdata-sections' make the kernel unbootable
+
+# C stuff
+CFLAGS="${COMMON}"
+CXXFLAGS="${COMMON}"
+# kernel stuff
+KCFLAGS="${COMMON}"
+# fortran stuff
+FCFLAGS="${COMMON}"
+FFLAGS="${COMMON}"
+
+# linker thingies
+LDFLAGS="${MARCH_NATIVE} -fuse-ld=mold"							       # pass march's flags and set mold as default linker
+LDFLAGS="${LDFLAGS} -Wl,--lto-O3 -Wl,--as-needed -Wl,--sort-common -fuse-linker-plugin"	       # optimizations
+LDFLAGS="${LDFLAGS} -pthread -lpthread"                                                        # minor threads thing
+
+# old linker optimizations, breaks xmonad config compiler, among other packages
+# LDFLAGS="${LDFLAGS} -fuse-ld=mold -rtlib=compiler-rt -unwindlib=libunwind"
+# rust optimizations
+RUSTFLAGS="-C target-cpu=native -C strip=symbols -C embed-bitcode=yes -C codegen-units=1 -C debuginfo=0"
+USE="rust-src" # required for rust to compile
+
+# others
+LLVM_TARGETS="AMDGPU"      # rust makes use of this
+
+#LUA_TARGETS="luajit lua5-4 lua5-3"
+LUA_SINGLE_TARGET="lua5-1" # suck a little bit more of performance from lua
+#PYTHON_TARGETS="python3_11 python_3_12"
+PYTHON_SINGLE_TARGET="python3_11"
+### }}}
+
+### akai's custom USE flags! {{{
+
+# default system flags
+USE="${USE} dbus firmware pam udev usb ipv6 libinput libnotify"
+# personal system flags
+USE="${USE} -systemd openrc elogind policykit-elogind -kde -gnome X xorg -wayland staging extra"
+# gentoo LTO + some additional tweaks
+USE="${USE} lto pgo graphite polly mllvm clang custom-cflags jumbo-build dynamic-loading parallel-compiler big-endian nightly"
+# use system components instead of package blobs
+USE="${USE} system-llvm system-python-libs system-png system-bootstrap" 
+# my apologies to stallman
+USE="${USE} proprietary-codecs widevine"
+# i hope this makes up for it
+USE="${USE} openh264"
+# AMD
+USE="${USE} mesa radeon vulkan video_cards_radeon"
+# graphics-related
+USE="${USE} opengl libglvnd d3d12 vaapi ffmpeg svg bluray udf"
+# audio stuff
+USE="${USE} gstreamer pulseaudio pipewire alsa pipewire-alsa sound-server -portaudio -jack -jack-client -oss"
+# crap I don't need
+USE="${USE} -qtwebengine -webengine -telepathy -gstreamer -thunderbolt -firewall -telemetry -aqua -xinerama -dracut -vlc -ibm -smartcard -modemmanager -openconnect -examples -wallpapers"
+# bluetooth support
+USE="${USE} -bluetooth -bluetooth-extra-codecs -native-headset -ofono-headset -coreaudio"
+# DVD support
+USE="${USE} -dvd -dvdr -dvdnav -haptic"
+# DDNet thingy
+USE="${USE} -videorecorder"
+# flags that don't fall under any category
+USE="${USE} git"
+# disorganized use flags
+USE="${USE} ab contrib -cdda discord -gpm libkms qml -a52 -altivec berkdb -css -emboss -ibe -ldap -mntp -nas -neon -nls -quicktime -motif -clamav 3df 3dfx cjk consolekit policykit"
+# disorganized use flags necessary for several packages to work:
+USE="${USE} savedconfig daemon system-service devi ce-mapper jetbrainsmono lm-sensors schily-tools device-mapper"
+# meme flags
+USE="${USE} offensive" # makes sudo roast you when getting ur password wrong
+
+### }}}
+
+### graveyard for configs i don't use anymore {{{
+
+# someday, when clang stops breaking some of my packages, I'll switch to it system-wide
+# CC="clang"
+# CXX="clang++"
+# LD="ld.lld"
+# AR="llvm-ar"
+# NM="llvm-nm"
+# RANLIB="llvm-ranlib"
+# STRIP="llvm-strip"
+# OBJCOPY="llvm-objcopy"
+# OBJDUMP="llvm-objdump"
+
+# doom emacs optimization flags stuff (according to wiki)
+# USE="${USE} json native-comp libjit"
+
+# fixed multiple dotnet slots bug with osu-lazer and OTD
+# USE="${USE} -dotnet-symlink"
+
+### }}}
+
+### defaults or things that i'll probably never modify again {{{
+
+# optimal cpu flags (app-portage/cpuid2cpuflags)
+CPU_FLAGS_X86="aes avx avx2 f16c fma3 mmx mmxext pclmul popcnt rdrand sha sse sse2 sse3 sse4_1 sse4_2 sse4a ssse3 vpclmulqdq"
+# some defaults for my system
+VIDEO_CARDS="amdgpu radeonsi"
+L10N="en en_US ja" #i need ja bcs some weird font incompatibility otherwise
+LINGUAS="en en_US"
+INSTALL_MASK="/usr/share/locale/usr/share/locale/en"
+
+# make portage not slow down system's responsiveness
+PORTAGE_SCHEDULING_POLICY="idle"
+PORTAGE_NICENESS="19"
+PORTAGE_IONICE_COMMAND="ionice -c 3 -p \${PID}"
+
+# remove the annoying portage warnings when unmerging or cleaning
+EMERGE_WARNING_DELAY=0
+CLEAN_DELAY=0
+
+# some stuff I probably won't change ever again
+ACCEPT_LICENSE="*"       # sorry stallman
+ACCEPT_KEYWORDS="~amd64" # ive found unstable to be rock stable, so i honestly prefer new packages to old ones
+C_MESSAGES=C.utf8
+GRUB_PLATFORMS="efi-64"
+
+# mirrors automatically updated with mirrorselect
+
+### }}}
+GENTOO_MIRRORS="https://ftp.fau.de/gentoo \
+    ftp://ftp-stud.hs-esslingen.de/pub/Mirrors/gentoo/ \
+    https://mirror.bytemark.co.uk/gentoo/ \
+    https://80.68.83.150/gentoo/ \
+    http://ftp.halifax.rwth-aachen.de/gentoo/"
