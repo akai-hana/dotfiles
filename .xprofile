@@ -1,0 +1,15 @@
+#!/bin/bash
+# akai's custom xprofile! #
+
+gentoo-pipewire-launcher &
+
+brightnessctl s 40 &
+
+polkit-gnome &
+
+corectrl &
+
+feh --bg-fill ~/wallpapers/milk-outside-a-bag-of-milk/edits
+#feh --bg-fill --randomize ~/wallpapers
+
+wal -Rnqst
