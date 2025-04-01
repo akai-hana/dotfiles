@@ -155,6 +155,7 @@ alias mv="doas mv"
 alias ln="doas ln"
 alias rm="doas rm -rf"
 alias cp="doas cp -r"
+alias game="gamemoderun"
 alias back=". ~/scripts/back.sh"
 
 # Compilation & System Utilities
