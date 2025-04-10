@@ -7,20 +7,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-. /home/eudaimon/git/zsh-defer/zsh-defer.plugin.zsh
-. /usr/share/zsh/site-functions/async.zsh
-. /usr/share/zsh/site-functions/powerlevel10k/powerlevel10k.zsh-theme
+. ~/git/zsh-plugins/zsh-defer/zsh-defer.plugin.zsh
+. ~/git/zsh-plugins/zsh-async/async.plugin.zsh
+. ~/git/zsh-plugins/powerlevel10k/powerlevel10k.zsh-theme
 
-. /usr/share/zsh/site-contrib/fast-syntax-highlighting/F-Sy-H.plugin.zsh
-. /usr/share/zsh/site-functions/zsh-history-substring-search.zsh
-. /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
-. /usr/share/zsh/site-contrib/oh-my-zsh/templates/zshrc.zsh-template
+#. /usr/share/zsh/site-contrib/fast-syntax-highlighting/F-Sy-H.plugin.zsh
+#. /usr/share/zsh/site-functions/zsh-history-substring-search.zsh
+#. /usr/share/zsh/site-functions/zsh-autosuggestions.zsh
+#. /usr/share/zsh/site-contrib/oh-my-zsh/templates/zshrc.zsh-template
 
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
 # Path to your Oh My Zsh installation.
-export ZSH=/usr/share/zsh/site-contrib/oh-my-zsh
+#export ZSH=/usr/share/zsh/site-contrib/oh-my-zsh
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
@@ -83,7 +83,7 @@ COMPLETION_WAITING_DOTS="true"
 # Would you like to use another custom folder than $ZSH/custom?
 export ZSH_CUSTOM=~/.zsh-custom-plugins
 
-export ZSH=/usr/share/zsh/site-contrib/oh-my-zsh
+#export ZSH=/usr/share/zsh/site-contrib/oh-my-zsh
 # Which plugins would you like to load?
 # Standard plugins can be found in $ZSH/plugins/
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -91,7 +91,7 @@ export ZSH=/usr/share/zsh/site-contrib/oh-my-zsh
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(git git-auto-fetch git-extras git-prompt gitfast fancy-ctrl-z zsh-navigation-tools vi-mode kitty)
 
-source $ZSH/oh-my-zsh.sh
+#source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='emacs'
+   export EDITOR='vim'
  fi
 
 # Compilation flags
@@ -169,18 +169,18 @@ alias mount="doas mount"
 alias umount="doas umount"
 
 # Configuration Files Editing
-alias makeconf="emacs /etc/portage/make.conf"
-alias zshrc="emacs ~/.zshrc"
-alias rclua="emacs ~/.config/awesome/rc.lua"
-alias correct="emacs /usr/share/zsh/site-contrib/oh-my-zsh/lib/correction.zsh"
+alias makeconf="$EDITOR /etc/portage/make.conf"
+alias zshrc="$EDITOR ~/.zshrc"
+alias rclua="$EDITOR ~/.config/awesome/rc.lua"
+alias correct="$EDITOR /usr/share/zsh/site-contrib/oh-my-zsh/lib/correction.zsh"
 
 # Services Management
 alias rcser="doas rc-service"
 alias rcupd="doas rc-update"
 
 # Custom Scripts
-alias edit="~/scripts/emacs.sh"
-alias emacs="~/scripts/emacs.sh"
+alias edit="~/scripts/$EDITOR.sh"
+alias emacs="~/scripts/$EDITOR.sh"
 alias zathura="~/scripts/zathura.sh 2>/dev/null"
 alias za="~/scripts/zathura.sh 2>/dev/null"
 
@@ -191,7 +191,7 @@ alias milkfetch="/home/eudaimon/scripts/milkfetch.sh"
 # System Info & Miscellaneous
 alias fetch="fastfetch"
 alias weather="curl wttr.in/Barcelona"
-alias brightnessctl="bn"
+alias bn="brightnessctl set"
 alias qq="exit"
 
 # Fun & Miscellaneous
@@ -199,14 +199,29 @@ alias repo="repository"
 alias todo="todo.sh"
 alias add="todo.sh add"
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 # pnpm
-export PNPM_HOME="/home/eudaimon/.local/share/pnpm"
+export PNPM_HOME="/home/akai/.local/share/pnpm"
 case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
 unsetopt correctall
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=999999999999999999
+SAVEHIST=999999999999999999
+setopt autocd extendedglob
+unsetopt beep
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/akai/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
