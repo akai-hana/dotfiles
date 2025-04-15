@@ -166,6 +166,7 @@ alias back=". ~/scripts/back.sh"
 alias pavucontrol="flatpak run com.saivert.pwvucontrol"
 alias ddnet="flatpak run tw.ddnet.ddnet.league.gctf"
 alias osu="flatpak run sh.ppy.osu"
+alias equibop="flatpak run io.github.equicord.equibop"
 
 # Compilation & System Utilities
 alias make="doas make"
