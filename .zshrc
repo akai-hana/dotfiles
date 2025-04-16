@@ -123,7 +123,7 @@ setopt appendhistory
 # System & X11 Management
 alias stx="DRI_PRIME=1 startx"
 alias sudo="doas"
-alias mkdir="mkdir -p"
+alias mkdir="doas mkdir -p"
 
 # Package Management (Portage)
 alias get="doas emerge"
