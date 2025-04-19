@@ -29,7 +29,7 @@
         "break",
         {
             "type": "os",
-            "key": " ",
+            "key": " ",
             "keyColor": "31",  // = color4
         },
         {
@@ -39,7 +39,7 @@
         },
         {
             "type": "packages",
-            "format": "{} (emerge full-LTO)",
+            "format": "{} (apk v3/chimera repos)",
             "key": " ",
             "keyColor": "31",
         },
