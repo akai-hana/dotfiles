@@ -99,7 +99,7 @@ source $ZSH/oh-my-zsh.sh
 export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+export EDITOR='hx'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -147,6 +147,7 @@ alias apks="doas apk search"
 alias apkupd="doas apk update"
 alias apkupg="doas apk upgrade"
 alias zapk="doas apk update && doas apk upgrade"
+alias ls="eza"
 
 # Kernel Management 
 alias get-kernel="cd /usr/src/linux && doas make nconfig"
@@ -222,3 +223,5 @@ source ~/.autoenv/activate.sh
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# eza
+source /home/akai/.cargo/bin
