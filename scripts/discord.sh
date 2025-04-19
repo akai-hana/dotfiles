@@ -1,2 +1,2 @@
 #!/bin/sh
-cd ~/git/Equibop && pnpm start
+flatpak run io.github.equicord.equibop

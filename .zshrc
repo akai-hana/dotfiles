@@ -1,3 +1,4 @@
+wal -qntR
 fastfetch
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
@@ -167,6 +168,7 @@ alias pavucontrol="flatpak run com.saivert.pwvucontrol"
 alias ddnet="flatpak run tw.ddnet.ddnet.league.gctf"
 alias osu="flatpak run sh.ppy.osu"
 alias equibop="flatpak run io.github.equicord.equibop"
+alias ytm="flatpak run com.github.th_ch.youtube_music"
 
 # Compilation & System Utilities
 alias make="doas make"
