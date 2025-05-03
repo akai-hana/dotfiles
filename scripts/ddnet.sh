@@ -1,2 +1,2 @@
 #!/bin/sh
-flatpak run tw.ddnet.ddnet.league.gctf
+~/scripts/swallow.sh flatpak run tw.ddnet.ddnet
