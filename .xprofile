@@ -1,4 +1,4 @@
 #!/bin/sh
 # akai's custom xprofile! #
 
-brightnessctl s 40 &
+npx arrpc &

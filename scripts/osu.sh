@@ -1,2 +1,2 @@
 #!/bin/sh
-flatpak run sh.ppy.osu
+~/scripts/swallow.sh flatpak run sh.ppy.osu

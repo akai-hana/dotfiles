@@ -147,7 +147,7 @@ alias apks="doas apk search"
 alias apkupd="doas apk update"
 alias apkupg="doas apk upgrade"
 alias zapk="doas apk update && doas apk upgrade"
-alias ls="eza"
+#alias ls="eza"
 
 # Kernel Management 
 alias get-kernel="cd /usr/src/linux && doas make nconfig"
