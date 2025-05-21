@@ -1,2 +1,2 @@
-type = scripted
-command = /usr/bin/pci-latency
+type    = scripted
+command = /usr/local/sbin/pci-latency

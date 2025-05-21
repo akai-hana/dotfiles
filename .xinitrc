@@ -1,5 +1,6 @@
+#!/bin/sh
 xrdb -merge ~/.xresources
-. ~/.xprofile
+. ~/.xprofile &
 
 #exec dwm
 exec dbus-launch --exit-with-session dwm

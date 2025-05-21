@@ -39,7 +39,7 @@
         },
         {
             "type": "packages",
-            "format": "{} (apk v3/chimera repos)",
+            "format": "{} (pacman)",
             "key": " ",
             "keyColor": "31",
         },
