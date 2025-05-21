@@ -1,4 +1,4 @@
 #!/bin/sh
 # akai's custom xprofile! #
-
-npx arrpc &
+amixer set PCM 115 &
+slstatus &

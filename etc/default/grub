@@ -1,4 +1,4 @@
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nowatchdog processor.ignore_ppc=1 split_lock_detect=off amd_pstate=active amdgpu.ppfeaturemask=0xffffffff"
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nowatchdog processor.ignore_ppc=1 amd_pstate=active amdgpu.ppfeaturemask=0xffffffff"
 
 GRUB_TIMEOUT=1
 GRUB_GFXMODE=2560x1600x32
@@ -7,7 +7,7 @@ GRUB_GFXMODE=2560x1600x32
 GRUB_SAVEDEFAULT=true
 GRUB_DEFAULT=saved
 
-GRUB_DISTRIBUTOR="Chimera"
+GRUB_DISTRIBUTOR="akai-hana"
 
 # Uncomment to use basic console
 #GRUB_TERMINAL_INPUT="console"
