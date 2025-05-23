@@ -1,0 +1,105 @@
+// ~/.config/broot/skins/wal-skin.hjson
+{
+  name: "pywal-generated"
+  author: "you"
+
+  skin: {
+    // basic elements
+    default               : "ansi(7) none / ansi(0) none"
+    tree                  : "ansi(8) none"
+    parent                : "ansi(8) none / ansi(8) none"
+    file                  : "ansi(7) none"
+    directory             : "ansi(2) none bold"
+    exe                   : "ansi(3) none"
+    link                  : "ansi(6) none"
+    pruning               : "ansi(8) none italic"
+
+    // permissions
+    perm__                : "ansi(7) none"
+    perm_r                : "ansi(4) none"
+    perm_w                : "ansi(1) none"
+    perm_x                : "ansi(2) none"
+
+    // ownership
+    owner                 : "ansi(7) none"
+    group                 : "ansi(7) none"
+
+    // git
+    git_branch            : "ansi(4) none"
+    git_insertions        : "ansi(2) none"
+    git_deletions         : "ansi(1) none"
+    git_status_current    : "ansi(7) none"
+    git_status_modified   : "ansi(3) none"
+    git_status_new        : "ansi(4) none"
+    git_status_ignored    : "ansi(8) none"
+    git_status_conflicted : "ansi(1) none"
+    git_status_other      : "ansi(1) none"
+
+    // selection & marking
+    selected_line         : "none ansi(8) / none ansi(8)"
+    char_match            : "ansi(3) none"
+    file_error            : "ansi(1) none"
+    flag_label            : "ansi(7) none"
+    flag_value            : "ansi(3) none bold"
+
+    // input / prompt
+    input                 : "ansi(7) none / ansi(7) ansi(0)"
+
+    // status line
+    status_error          : "ansi(1) ansi(1)"
+    status_job            : "ansi(3) ansi(7)"
+    status_normal         : "ansi(7) ansi(8)"
+    status_italic         : "ansi(3) ansi(8)"
+    status_bold           : "ansi(3) ansi(8) bold"
+    status_code           : "ansi(4) ansi(8)"
+    status_ellipsis       : "ansi(7) ansi(8)"
+
+    // purpose labels
+    purpose_normal        : "ansi(7) ansi(8)"
+    purpose_italic        : "ansi(5) ansi(8)"
+    purpose_bold          : "ansi(5) ansi(8) bold"
+    purpose_ellipsis      : "ansi(7) ansi(8)"
+
+    // scrollbar
+    scrollbar_track       : "ansi(8) none"
+    scrollbar_thumb       : "ansi(7) none"
+
+    // help screen
+    help_paragraph        : "ansi(7) none"
+    help_bold             : "ansi(3) none bold"
+    help_italic           : "ansi(5) none italic"
+    help_code             : "ansi(7) ansi(8)"
+    help_headers          : "ansi(3) none"
+    help_table_border     : "ansi(8) none"
+
+    // preview panel
+    preview_title         : "ansi(7) none"
+    preview               : "ansi(7) ansi(8)"
+    preview_separator     : "ansi(4) none"
+    preview_line_number   : "ansi(8) ansi(8)"
+    preview_match         : "none ansi(2)"
+
+    // hex view
+    hex_null              : "ansi(8) none"
+    hex_ascii_graphic     : "ansi(7) none"
+    hex_ascii_whitespace  : "ansi(8) none"
+    hex_ascii_other       : "ansi(7) none"
+    hex_non_ascii         : "ansi(5) none"
+
+    // staging area (git)
+    staging_area_title    : "ansi(7) none"
+
+    // mode & progress markers
+    mode_command_mark     : "ansi(7) ansi(5) bold"
+
+    // good→bad spectrum (for diffs/stats)
+    good_to_bad_0         : "ansi(2)"
+    good_to_bad_1         : "ansi(2)"
+    good_to_bad_2         : "ansi(3)"
+    good_to_bad_3         : "ansi(3)"
+    good_to_bad_4         : "ansi(3)"
+    good_to_bad_5         : "ansi(1)"
+    good_to_bad_6         : "ansi(7)"
+  }
+}
+
