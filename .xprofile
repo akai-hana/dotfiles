@@ -1,4 +1,5 @@
 #!/bin/sh
 # akai's custom xprofile! #
+amixer set Speaker\ Volume 115 &
 amixer set PCM 115 &
 slstatus &
