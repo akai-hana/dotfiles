@@ -3,3 +3,5 @@
 amixer set Speaker\ Volume 115 &
 amixer set PCM 115 &
 slstatus &
+feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
+~/scripts/audio.sh &
