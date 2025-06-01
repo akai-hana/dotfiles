@@ -1,7 +1,12 @@
 #!/bin/sh
 # akai's custom xprofile! #
+#feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
+slstatus &
+(cd ~/git/shadow && DRI_PRIME=1 poetry run shadow ~/Downloads/o.frag --width 2560 --height 1600 -m root -f 20 -s 0.5) &
+picom --backend glx &
+~/scripts/fullscreen-test.sh &
+
+~/scripts/audio.sh
 amixer set Speaker\ Volume 115 &
 amixer set PCM 115 &
-slstatus &
-feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
-~/scripts/audio.sh &
+brightnessctl s 40 &
