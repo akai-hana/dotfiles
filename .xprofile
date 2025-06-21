@@ -2,9 +2,10 @@
 # akai's custom xprofile! #
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
 slstatus &
-(cd ~/git/shadow && DRI_PRIME=1 poetry run shadow ~/Downloads/o.frag --width 2560 --height 1600 -m root -f 20 -s 0.5) &
+arrpc &
+(cd ~/git/shadow && DRI_PRIME=1 poetry run shadow ~/Downloads/o.frag --width 2560 --height 1600 -m root -f 20 -s 0.66) &
 picom --backend glx &
-~/scripts/fullscreen-test.sh &
+~/shader-wallpaper/scripts/fullscreen-pause.sh &
 
 ~/scripts/audio.sh
 amixer set Speaker\ Volume 115 &

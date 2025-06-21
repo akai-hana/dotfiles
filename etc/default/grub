@@ -1,7 +1,7 @@
 GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff nowatchdog processor.ignore_ppc=1 amd_pstate=active"
 
 GRUB_TIMEOUT=1
-GRUB_GFXMODE=1280x800x32
+GRUB_GFXMODE=640x400x32
 
 # remember last kernel boot
 GRUB_SAVEDEFAULT=true
