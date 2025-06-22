@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # STATE=1
 
 # grab the number off line 2
