@@ -3,11 +3,12 @@
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
 slstatus &
 arrpc &
+discordrp-mpris &
 (cd ~/git/shadow && DRI_PRIME=1 poetry run shadow ~/Downloads/o.frag --width 2560 --height 1600 -m root -f 20 -s 0.66) &
 picom --backend glx &
 ~/shader-wallpaper/scripts/fullscreen-pause.sh &
+brightnessctl s 40 &
 
 ~/scripts/audio.sh
 amixer set Speaker\ Volume 115 &
 amixer set PCM 115 &
-brightnessctl s 40 &
