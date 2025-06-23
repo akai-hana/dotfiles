@@ -1,6 +1,8 @@
 ***
 these are my dotfiles.
 
+they contain everything; from config files and personal scripts to my "milk outside a bag of milk"-inspired rice.
+
 you're welcome to take anything you might like. :)
 ***
 
