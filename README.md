@@ -27,5 +27,5 @@ you're welcome to take anything you might like. :)
 
 #### TO-DO
 + *add cmus config*
-+ add all other milk-bag shaders and randomize them upon boot*
++ *add all other milk-bag shaders and randomize them upon boot*
 + *make shader config more cohesively structured*
