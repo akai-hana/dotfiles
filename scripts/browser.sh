@@ -1,2 +1,6 @@
 #!/bin/sh
-DRI_PRIME=0 MOZ_USE_XINPUT2=1 zen-browser
+
+BROWSER=zen-browser
+export BROWSER
+
+DRI_PRIME=0 MOZ_USE_XINPUT2=1 $BROWSER

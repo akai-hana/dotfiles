@@ -24,3 +24,4 @@ GRUB_DISTRIBUTOR="akai-hana"
 # modes only.  Entries specified as foreground/background.
 #GRUB_COLOR_NORMAL="light-blue/black"
 #GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
+GRUB_DISABLE_SUBMENU=y
