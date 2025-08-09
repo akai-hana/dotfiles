@@ -8,14 +8,31 @@ slstatus &
 arrpc &
 discordrp-mpris &
 
-# screen
+## screen
+
+# brightness and color profile
+brightnessctl s 25% &
+xcalib -d :0 ~/dotfiles/lenovo-legion/Lenovo-Legion-7-16ARHA7-99th-optimal-color-profile.icm &
+
+# wallpaper (old image)
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
-(cd ~/git/shadow && DRI_PRIME=1 poetry run shadow ~/Downloads/o.frag --width 2560 --height 1600 -m root -f 20 -s 0.66) &
+
+# wallpaper (new shader)
+(cd ~/git/shadow && DRI_PRIME=1 poetry run shadow ~/shaders/o.frag --width 2560 --height 1600 -m root -f 20 -s 0.66 -q 1) &
+~/scripts/shader-fullscreen-pause.sh &
+
+# compositing for gaussian blur
 picom --backend glx &
-~/shader-wallpaper/scripts/fullscreen-pause.sh &
-brightnessctl s 40 &
 
 # audio
 ~/scripts/audio.sh
 amixer set Speaker\ Volume 115 &
 amixer set PCM 115 &
+
+# network
+dhcpcd &
+
+## micro-optimizations
+renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
+adjust-pci-latency game &
+

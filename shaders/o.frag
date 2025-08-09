@@ -1,14 +1,10 @@
+// Original shader author: poopsock
 #ifdef GL_ES
 precision mediump float;
 #endif
 
-// Uniforms that glslviewer provides
-uniform vec2 u_resolution;
-uniform float u_time;
-
-// Original shader author: poopsock
-// Extracted and adapted to Shadertoy by: akai_hana
-// Adapted for glslviewer wallpaper by: Claude
+uniform float time;
+uniform vec2 resolution;
 
 int cell_amount = 2;
 vec2 period = vec2(5., 10.);
@@ -74,20 +70,19 @@ float sdfCircle(vec2 p, vec2 o, float r) {
     return 0.0;
 }
 
-void main()
+void mainImage(out vec4 color, vec2 p)
 {
-    vec2 fragCoord = gl_FragCoord.xy;
-    vec2 iResolution = u_resolution;
-    float iTime = u_time;
-    
-    vec2 uv = floor((2. * fragCoord - iResolution.xy) / iResolution.y * 1000.) / 500.;
+    vec2 uv = floor((2. * p - resolution.xy) / resolution.y * 1000.) / 500.;
     vec2 puv = polar(uv, vec2(0.), .5, 1.);
     vec3 c = vec3(0.);
+
 	vec4 milkBlack = vec4(vec3(0.050980392156862744, 0.050980392156862744, 0.0784313725490196), 1.0);
     vec4 milkGrey = vec4(vec3(0.3215686274509804, 0.14901960784313725, 0.24313725490196078), 1.0);
     vec4 milkWhite = vec4(vec3(0.6745098039215687, 0.19607843137254902, 0.19607843137254902), 1.0);
-    float n = fbm(puv * vec2(1., 1.) + vec2(iTime * .2, 5. / (puv.x) * -.1) * .5);
+
+    float n = fbm(puv * vec2(1., 1.) + vec2(time * .2, 5. / (puv.x) * -.1) * .5);
     n = n*n / sqrt(puv.x) * .8;
+
     c = vec3(milkBlack);
     if (n > 0.2) {
         c = vec3(milkGrey);
@@ -98,5 +93,9 @@ void main()
     if (puv.x < .4) {
         c = vec3(milkBlack);
     }
-    gl_FragColor = vec4(c, 1.);
+    color = vec4(c, 1.);
+}
+
+void main() {
+    mainImage(gl_FragColor, gl_FragCoord.xy);
 }
