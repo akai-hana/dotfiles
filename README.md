@@ -7,7 +7,6 @@ you're welcome to take anything you might like. :)
 ### apps i use
 + **terminal:** ghostty
 + **shell:** fish
-  > *(sorry zsh, i'll miss our 4 years engagement divorce)*
 + **font:** firacode + nerdfonts + ligatures *(monospaced for code and proportional for UI's)*
 + **text editor:** DOOM emacs
 + **file explorer:** yazi *(to browse files)* and broot *(if i want to execute specific files, like videos or audios)*
@@ -15,8 +14,8 @@ you're welcome to take anything you might like. :)
 
 + **browser:** zen
 + **discord client:** vesktop
-  > *(equibop stopped working? for some reason?
-  > also a lot of its plugins break it for me)*
-+ **music:** youtube music (th-ch's build)
-+ **torrent client:** ~~qbittorrent~~ deluge
-  > *(just because it has a dark theme preinstalled)*
++ **music:** youtube music (th-ch's wrapper)
++ **torrent client:** deluge
+
++ **wallpaper:** upon boot, a randomly picked shader from [here](https://github.com/akai-hana/shader-wallpaper/tree/main/shadow), using [this project](https://github.com/danielfvm/shadow)
++ > for more info, check [this little guide](https://github.com/akai-hana/shader-wallpaper/blob/main/README.md). 
