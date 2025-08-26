@@ -1,11 +1,11 @@
 #!/bin/sh
-# Fully event-driven fullscreen shader wallpaper/picom manager script
-# (by akai - converted to pure event-driven approach)
-# This script saves on computer resources by stopping the
-# shader wallpaper and picom from running when full-screening onto a program.
-# Zero polling - purely event-driven using X11 events.
+# Event-driven fullscreen shader wallpaper/picom manager script, by akai.
 
-# Same assumptions as original:
+# This script saves on computer resources by stopping the shader 
+# wallpaper and picom from running when full-screening onto a program.
+# Zero polling, purely event-driven using X11 events.
+
+# Assumptions:
 # + Ghostty as the terminal program
 # + Zen as the browser
 # + Vesktop as the Discord client

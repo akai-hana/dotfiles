@@ -2,7 +2,7 @@
 xrdb -merge ~/.xresources
 . ~/.xprofile &
 
-exec dbus-launch --exit-with-session dwm
+exec dbus-run-session -- dwm
 #exec dbus-launch --exit-with-session i3
 #exec dbus-launch --exit-with-session awesome
 #exec dbus-launch --exit-with-session bspwm
