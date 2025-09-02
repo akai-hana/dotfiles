@@ -1,7 +1,5 @@
 ! akai-hanas Xresources!
 
-#include "/home/akai/.cache/wal/colors.Xresources"
-
 Xft.dpi:189
 
 Xft.antialias: 1
