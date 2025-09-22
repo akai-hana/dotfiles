@@ -19,3 +19,6 @@ you're welcome to take anything you might like. :)
 <!-- -->
 + **wallpaper:** upon boot, a randomly picked shader from [here](https://github.com/akai-hana/shader-wallpaper/tree/main/shadow), using [this project](https://github.com/danielfvm/shadow)
 > for more info on wallpaper, check [this little guide](https://github.com/akai-hana/shader-wallpaper/blob/main/README.md). 
+
+### TO-DO
++ add doas.conf to /etc/
