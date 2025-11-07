@@ -69,7 +69,7 @@ is_window_fullscreen() {
         local process_name=$(ps -p "$window_pid" -o comm= 2>/dev/null)
         
         # Special case: always pause for zen-bin (browser), regardless of fullscreen state
-        if [ "$process_name" = "zen-bin" ] || [ "$process_name" = "electron" ] || [ "$process_name" = "youtube-music" ] || [ "$process_name" = "mpv" ]; then
+        if [ "$process_name" = "zen-bin" ] || [ "$process_name" = "electron" ] || [ "$process_name" = "youtube-music" ] ]; then
             return 0  # Pause services when focused on browser
         fi
         
