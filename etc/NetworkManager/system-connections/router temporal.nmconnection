@@ -1,0 +1,19 @@
+[connection]
+id=router temporal
+uuid=4c07e9de-ff9b-4b7d-a745-3ff4673b03d1
+type=wifi
+interface-name=wlp5s0
+timestamp=1761509465
+
+[wifi]
+mode=infrastructure
+ssid=router temporal
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=default
+method=auto
+
+[proxy]
