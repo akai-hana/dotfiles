@@ -1,2 +1,4 @@
 .oh-my-zsh/cache/
 *.tmp*
+*Log*
+*log*
