@@ -1,0 +1,1 @@
+/home/akai/git/shader-wallpaper/shadow/scripts/shader-start.sh
