@@ -1,0 +1,99 @@
+// akai's shell
+
+{
+
+    "logo": {
+        "source": "~/.config/fastfetch/copland-shell.txt",
+        "padding": {
+            "top": 1
+            }
+        },
+
+
+    "display": {
+    "separator": " "
+        },
+
+    "modules": [
+            "break",
+	{
+
+            "type": "custom",
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
+        },
+	"break",
+	{
+            "type": "title",
+            "keyWidth": 10
+        },
+        "break",
+        {
+            "type": "os",
+            "key": " ",
+            "keyColor": "31",  // = color4
+        },
+        {
+            "type": "kernel",
+            "key": "󰻀 ",
+            "Keycolor": "33",
+        },
+        {
+            "type": "packages",
+            "format": "{} (portage)",
+            "key": " ",
+            "keyColor": "31",
+        },
+        {
+            "type": "shell",
+            "key": " ",
+            "keyColor": "33",
+        },
+        {
+            "type": "terminal",
+            "key": " ",
+            "keyColor": "31",
+        },
+        {
+            "type": "wm",
+            "key": " ",
+            "keyColor": "33",
+        },
+        {
+            "type": "cursor",
+            "key": " ",
+            "keyColor": "31",
+        },
+        {
+            "type": "terminalfont",
+            "key": " ",
+            "keyColor": "33",
+        },
+        {
+            "type": "uptime",
+            "key": " ",
+            "keyColor": "31",
+        },
+        {
+            "type": "datetime",
+            "format": "{1}-{3}-{11}",
+            "key": " ",
+            "keyColor": "33",
+        },
+        {
+            "type": "disk",
+            "key": " ",
+            "keyColor": "31",
+        },
+        {
+            "type": "ram",
+            "key": "⏾ ",
+        },
+        "break",
+	{
+
+            "type": "custom",
+            "format": "\u001b[90m  \u001b[31m  \u001b[32m  \u001b[33m  \u001b[34m  \u001b[35m  \u001b[36m  \u001b[37m"
+        },
+        "break"
+	]
+}

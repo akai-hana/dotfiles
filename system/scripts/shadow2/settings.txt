@@ -1,0 +1,4 @@
+# random wallpaper picker
+# akais specific settings
+
+(cd ~/git/shadow && DRI_PRIME=1 poetry run shadow "$(find ~/shader-wallpaper/shadow -name "*.frag" | shuf -n 1)" -m root -f 20 -s 0.6 -q 1) &

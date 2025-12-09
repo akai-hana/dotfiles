@@ -1,0 +1,36 @@
+#!/bin/sh
+# akai's custom xprofile! #
+
+# dwm
+slstatus &
+
+# discord rpcs
+arrpc &
+discordrp-mpris &
+
+## screen
+
+# brightness and color profile
+brightnessctl s 25% &
+xcalib -d :0 ~/dotfiles/lenovo-legion/Lenovo-Legion-7-16ARHA7-99th-optimal-color-profile.icm &
+
+# wallpaper (old image)
+#feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
+
+# wallpaper (new shader)
+(cd ~/git/shadow && DRI_PRIME=1 poetry run shadow "$(find ~/shader-wallpaper/shadow -name "*.frag" | shuf -n 1)" -m root -f 20 -s 0.6 -q 1) &
+~/scripts/shader-fullscreen-pause.sh &
+
+# compositing for gaussian blur
+picom --backend glx &
+
+# audio
+~/scripts/audio.sh &
+
+# network
+dhcpcd &
+
+## micro-optimizations
+renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
+adjust-pci-latency game &
+

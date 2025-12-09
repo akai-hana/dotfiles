@@ -1,0 +1,27 @@
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff nowatchdog processor.ignore_ppc=1 amd_pstate=active"
+
+GRUB_TIMEOUT=1
+GRUB_GFXMODE=640x400x32
+
+# remember last kernel boot
+GRUB_SAVEDEFAULT=true
+GRUB_DEFAULT=saved
+
+GRUB_DISTRIBUTOR="akai-hana"
+
+# Uncomment to use basic console
+#GRUB_TERMINAL_INPUT="console"
+# Uncomment to disable graphical terminal
+#GRUB_TERMINAL_OUTPUT=console
+#GRUB_BACKGROUND=/path/to/your/splash.png
+#GRUB_DISABLE_LINUX_UUID=true
+#GRUB_DISABLE_RECOVERY=true
+# Uncomment to disable os-prober
+#GRUB_DISABLE_OS_PROBER=true
+# Uncomment to disable kernel update-grub hook
+#GRUB_DISABLE_KERNEL_HOOK=true
+# Uncomment and set to the desired menu colors.  Used by normal and wallpaper
+# modes only.  Entries specified as foreground/background.
+#GRUB_COLOR_NORMAL="light-blue/black"
+#GRUB_COLOR_HIGHLIGHT="light-cyan/blue"
+GRUB_DISABLE_SUBMENU=y
