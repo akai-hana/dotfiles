@@ -32,7 +32,7 @@ abbr q  "exit"
 abbr ff "fastfetch"
 
 ## overrides
-abbr mkdir "doas mkdir -p"
+abbr mkdir "mkdir -p"
 abbr mv    "doas mv"
 abbr cp    "doas cp -r"
 abbr rm    "doas rm"

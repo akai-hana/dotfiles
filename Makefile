@@ -43,7 +43,7 @@ RESET   = \033[0m
 RUN = sh formatting_wrapper.sh
 
 # main stow function
-stow = $(RUN) xstow --target=$(1) $(2) --verbose=$(VERBOSE_LEVEL)
+stow = $(RUN) xstow --target=$(1) $(2) --verbose=$(VERBOSE_LEVEL) # do not force this
 
 # help (default target)
 help:
@@ -83,9 +83,9 @@ uninstall:
 
 # dry-run (adding/testing xstow before committing)
 test:
-	@echo -e "$(CYAN)→ Dry-run stowing $(DOTFILES) onto $(HOME)$(RESET)"
+	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto $(HOME)$(RESET)"
 	@$(call stow,$(HOME),--no $(DOTFILES))
-	@echo -e "$(CYAN)→ Dry-run stowing $(DOTFILES) onto /usr$(RESET)"
+	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto /usr$(RESET)"
 	@$(call stow,/usr,--no $(DOTFILES)/usr)
-	@echo -e "$(CYAN)→ Dry-run stowing $(DOTFILES) onto /etc$(RESET)"
+	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto /etc$(RESET)"
 	@$(call stow,/etc,--no $(DOTFILES)/etc)
