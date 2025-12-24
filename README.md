@@ -28,5 +28,4 @@ you're welcome to take anything you might like. :)
 > for more info on wallpaper, check [this little guide](https://github.com/akai-hana/shader-wallpaper/blob/main/README.md). 
 
 ### TO-DO
-+ integrate GNU stow (or xstow), or maybe chezmoi?
 + custom cursor repo
