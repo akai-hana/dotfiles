@@ -1,0 +1,22 @@
+### akai_hana's messed up grub config ### 
+
+GRUB_DISTRIBUTOR="akai_hana"
+GRUB_TIMEOUT=5
+GRUB_DISABLE_SUBMENU=y
+
+# remember last kernel boot 
+GRUB_SAVEDEFAULT=true
+GRUB_DEFAULT=saved
+
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash amdgpu.ppfeaturemask=0xffffffff nowatchdog processor.ignore_ppc=1 init=/usr/bin/init amd_pstate=active cpufreq.default_governor=performance cpufreq.energy_performance_preference=performance"
+
+# maybe sometime
+#GRUB_BACKGROUND=/path/to/your/splash.png
+
+GRUB_GFXMODE=2560x16001920x1080x32
+
+# maybe sometime else
+# Uncomment and set to the desired menu colors.  Used by normal and wallpaper
+# modes only.  Entries specified as foreground/background.
+#GRUB_COLOR_NORMAL="light-blue/black"
+#GRUB_COLOR_HIGHLIGHT="light-cyan/blue"

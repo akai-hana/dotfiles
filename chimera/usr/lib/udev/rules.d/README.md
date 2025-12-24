@@ -1,0 +1,1 @@
+these are a collection of patches i yanked from cachyos-settings, because im a sucker for micro optimizing every corner of my system even if i couldn't tell the difference afterwards blindfolded and at gunpoint.

@@ -1,1 +1,0 @@
-/home/akai/git/shader-wallpaper/shadow/scripts/shader-switch.sh

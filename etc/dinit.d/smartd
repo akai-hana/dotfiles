@@ -1,5 +1,0 @@
-# smartd service
-
-type = process
-command = /usr/bin/smartd --configfile=/etc/smartd.conf --no-fork --capabilities
-depends-on = local.target

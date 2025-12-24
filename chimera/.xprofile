@@ -1,0 +1,73 @@
+#!/bin/sh
+# akai's custom xprofile! #
+
+# theming stuff
+export XCURSOR_THEME=milk-cursor
+export XCURSOR_PATH=~/.local/share/icons:~/.icons:/usr/share/icons
+
+# make keyboard repeat rates faster so holding keys is not slow af
+xset r rate 200 40
+
+# setup media storage
+doas mount /dev/nvme1n1p2 ~/mount
+
+# dwm
+
+## setup date and clock
+slstatus &
+
+# screen
+
+## brightness and color profile
+brightnessctl s 25% &
+~/git/lenovo-legion/argyll/bin/dispwin ~/git/lenovo-legion/Lenovo-Legion-7-16ARHA7-99th-optimal-color-profile.icm &
+
+## randomized wallpaper from a selection (deprecated)
+#feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
+
+## compositing for transparency and gaussian blur
+picom &
+
+## shader wallpaper randomized from a selection
+~/git/shader-wallpaper/shadow/scripts/shader-start.sh &
+# auto-pause/resume shader rendering and compositing if fullscreen or inside a game to avoid latency/input lag
+#~/.scripts/shader-fullscreen-pause.sh &
+
+# micro-optimizations
+
+## set cpu to performance
+## (amd pstates defaults to powersave; script does work outside of amd since its just kernel schedulers)
+~/.scripts/cpu-performance.sh &
+
+## set gpu to high (AMD only)
+echo high | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level
+
+## optimize PCI latency timings
+~/.scripts/pci-latency.sh &
+
+## disable power saving for PCIe's
+~/.scripts/pcie-performance.sh &
+
+## increase the highest requested RTC interrupt frequency (by default 64hz)
+
+## this can theoretically shave up to 14.5 milliseconds of audio latency in timer resolution,
+## but if the audio buffer of the sound server of your preference (in my case pipewire) is set
+## to anything lower than this resolution, the latency will be capped by the higher number.
+## this means that you should also tweak the sound server (pipewire)'s quantum rates.
+## check out my (akai) pipewire's configs if you're reading this and want an example.
+doas sh -c 'echo 2048 > /sys/class/rtc/rtc0/max_user_freq'
+doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq'
+
+## pci latency cycle/timing adjustments
+doas /usr/local/sbin/pci-latency &
+
+## move firefox profile to RAM (tmpfs), increasing browser speed by about 2 points on speedometer 3.1
+
+## for anyone thinking on doing this, it's a bit more convoluted as it seems, since you have to
+## do some sort of setup so that this script is ran each time you exit firefox or shut down your system,
+## in order for all the tabs/history/everything else being synced back from tmpfs to solid state storage
+## and not lost on reboot.
+~/.local/bin/firefox-sync.sh xpmraevm.default-default &
+
+# TODO: move to dedicated pause/resume shader wallpaper script
+#renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &

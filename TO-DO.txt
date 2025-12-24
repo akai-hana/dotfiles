@@ -1,0 +1,2 @@
+move system to chimera-linux
+not just yet though, need to stow it to there, so verify that stow works to begin with

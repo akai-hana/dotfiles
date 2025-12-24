@@ -1,2 +1,0 @@
-type = scripted
-command = /usr/local/sbin/pci-latency
