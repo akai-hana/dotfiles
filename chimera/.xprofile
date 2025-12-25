@@ -6,10 +6,10 @@ export XCURSOR_THEME=milk-cursor
 export XCURSOR_PATH=~/.local/share/icons:~/.icons:/usr/share/icons
 
 # make keyboard repeat rates faster so holding keys is not slow af
-xset r rate 200 40
+xset r rate 200 40 &
 
 # setup media storage
-doas mount /dev/nvme1n1p2 ~/mount
+doas mount /dev/nvme1n1p2 ~/mount &
 
 # dwm
 
@@ -40,7 +40,7 @@ picom &
 ~/.scripts/cpu-performance.sh &
 
 ## set gpu to high (AMD only)
-echo high | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level
+echo high | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level &
 
 ## optimize PCI latency timings
 ~/.scripts/pci-latency.sh &
@@ -55,8 +55,8 @@ echo high | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_lev
 ## to anything lower than this resolution, the latency will be capped by the higher number.
 ## this means that you should also tweak the sound server (pipewire)'s quantum rates.
 ## check out my (akai) pipewire's configs if you're reading this and want an example.
-doas sh -c 'echo 2048 > /sys/class/rtc/rtc0/max_user_freq'
-doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq'
+doas sh -c 'echo 2048 > /sys/class/rtc/rtc0/max_user_freq' &
+doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 
 ## pci latency cycle/timing adjustments
 doas /usr/local/sbin/pci-latency &
@@ -68,6 +68,9 @@ doas /usr/local/sbin/pci-latency &
 ## in order for all the tabs/history/everything else being synced back from tmpfs to solid state storage
 ## and not lost on reboot.
 ~/.local/bin/firefox-sync.sh xpmraevm.default-default &
+
+# auto-sync eudaimonia
+~/eudaimonia/auto-push.sh &
 
 # TODO: move to dedicated pause/resume shader wallpaper script
 #renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
