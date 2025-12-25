@@ -1,6 +1,6 @@
 #!/bin/sh
 # akai's custom xprofile! #
-DOTFILES="~/eudaimonia" # dotfiles location
+EUDAIMONIA="~/eudaimonia" # suite location
 
 # theming stuff
 # TODO: MOVE CURSOR TO DEDICATED REPO INSIDE EUDAIMONIA
@@ -22,7 +22,7 @@ slstatus &
 
 ## brightness and color profile
 brightnessctl s 25% &
-$DOTFILES/lenovo-legion/argyll/bin/dispwin $DOTFILES/lenovo-legion/Lenovo-Legion-7-16ARHA7-99th-optimal-color-profile.icm &
+$EUDAIMONIA/lenovo-legion/argyll/bin/dispwin $EUDAIMONIA/lenovo-legion/Lenovo-Legion-7-16ARHA7-99th-optimal-color-profile.icm &
 
 ## randomized wallpaper from a selection (deprecated)
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
@@ -31,7 +31,7 @@ $DOTFILES/lenovo-legion/argyll/bin/dispwin $DOTFILES/lenovo-legion/Lenovo-Legion
 picom &
 
 ## shader wallpaper randomized from a selection
-$DOTFILES/shader-wallpaper/shadow/scripts/shader-start.sh &
+$EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
 # auto-pause/resume shader rendering and compositing if fullscreen or inside a game to avoid latency/input lag
 #~/.scripts/shader-fullscreen-pause.sh &
 
@@ -39,16 +39,16 @@ $DOTFILES/shader-wallpaper/shadow/scripts/shader-start.sh &
 
 ## set cpu to performance
 ## (amd pstates defaults to powersave; script does work outside of amd since its just kernel schedulers)
-$DOTFILES/scripts/cpu-performance.sh &
+$EUDAIMONIA/scripts/cpu-performance.sh &
 
 ## set gpu to high (AMD only)
 echo high | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level &
 
 ## optimize PCI cycle/timings for latency
-$DOTFILES/scripts/pci-latency.sh &
+$EUDAIMONIA/scripts/pci-latency.sh &
 
 ## disable power saving on all PCIe's
-$DOTFILES/scripts/pcie-performance.sh &
+$EUDAIMONIA/scripts/pcie-performance.sh &
 
 ## increase the highest requested RTC interrupt frequency (by default 64hz)
 
