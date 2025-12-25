@@ -1,6 +1,6 @@
 #!/bin/sh
 # akai's custom xprofile! #
-EUDAIMONIA="~/eudaimonia" # suite location
+EUDAIMONIA="$HOME/eudaimonia" # suite location
 
 # theming stuff
 # TODO: MOVE CURSOR TO DEDICATED REPO INSIDE EUDAIMONIA
