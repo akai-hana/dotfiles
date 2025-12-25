@@ -68,6 +68,9 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 ## and not lost on reboot.
 ~/.local/bin/firefox-sync.sh xpmraevm.default-default &
 
+# turn on discord rpc
+~/eudaimonia/scripts/arrpc.sh &
+
 # auto-sync eudaimonia
 ~/eudaimonia/auto-push.sh &
 
