@@ -1,0 +1,23 @@
+" Special
+let wallpaper  = "/home/akai/Downloads/test.jpg"
+let background = "#0F0F14"
+let foreground = "#e0ded0"
+let cursor     = "#e0ded0"
+
+" Colors
+let color0  = "#0F0F14"
+let color1  = "#3F3F51"
+let color2  = "#912D33"
+let color3  = "#AE3234"
+let color4  = "#C0393A"
+let color5  = "#47958C"
+let color6  = "#B9C0A8"
+let color7  = "#e0ded0"
+let color8  = "#9c9b91"
+let color9  = "#3F3F51"
+let color10 = "#912D33"
+let color11 = "#AE3234"
+let color12 = "#C0393A"
+let color13 = "#47958C"
+let color14 = "#B9C0A8"
+let color15 = "#e0ded0"

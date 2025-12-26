@@ -1,0 +1,19 @@
+[global]
+    frame_color = "{color4}"
+    separator_color = "{color4}"
+    font = Monospace 10
+    
+[urgency_low]
+    background = "{background}"
+    foreground = "{foreground}"
+    timeout = 5
+
+[urgency_normal]
+    background = "{background}"
+    foreground = "{foreground}"
+    timeout = 10
+
+[urgency_critical]
+    background = "{color1}"
+    foreground = "{foreground}"
+    timeout = 0

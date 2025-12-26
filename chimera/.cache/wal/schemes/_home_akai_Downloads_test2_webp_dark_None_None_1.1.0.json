@@ -1,0 +1,27 @@
+{
+    "wallpaper": "/home/akai/Downloads/test2.webp",
+    "alpha": "100",
+    "special": {
+        "background": "#09090d",
+        "foreground": "#aebdb8",
+        "cursor": "#aebdb8"
+    },
+    "colors": {
+        "color0": "#09090d",
+        "color1": "#6F2936",
+        "color2": "#5D2941",
+        "color3": "#485E5C",
+        "color4": "#8F2F36",
+        "color5": "#AB3231",
+        "color6": "#903341",
+        "color7": "#aebdb8",
+        "color8": "#798480",
+        "color9": "#6F2936",
+        "color10": "#5D2941",
+        "color11": "#485E5C",
+        "color12": "#8F2F36",
+        "color13": "#AB3231",
+        "color14": "#903341",
+        "color15": "#aebdb8"
+    }
+}

@@ -1,0 +1,21 @@
+set $wallpaper /home/akai/Downloads/test.jpg
+
+set $background #0F0F14
+set $foreground #e0ded0
+
+set $color0 #0F0F14
+set $color1 #3F3F51
+set $color2 #912D33
+set $color3 #AE3234
+set $color4 #C0393A
+set $color5 #47958C
+set $color6 #B9C0A8
+set $color7 #e0ded0
+set $color8 #9c9b91
+set $color9 #3F3F51
+set $color10 #912D33
+set $color11 #AE3234
+set $color12 #C0393A
+set $color13 #47958C
+set $color14 #B9C0A8
+set $color15 #e0ded0

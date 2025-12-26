@@ -20,7 +20,6 @@ VERBOSE_LEVEL = 3
 ## the double dollar sign serves as an escape sequence for itself,
 ## to mean "HOME" as in the shell variable, not as in a Make variable
 ## (ej. $H + OME)
-
 ## `$(DOTFILES)` only uses one $ since it's a Make variable, not a shell one.
 
 ### little hack to declare all arguments of the "make" command as phonies,
@@ -28,12 +27,28 @@ VERBOSE_LEVEL = 3
 ### (ej. `.PHONY: install uninstall dry_run <yada> <yada>`)
 .PHONY: $(MAKECMDGOALS)
 
-# Colors
+# palette
 CYAN    = \033[0;36m
 GREEN   = \033[0;32m
 YELLOW  = \033[0;33m
+RED     = \033[0;31m
 BOLD    = \033[1m
 RESET   = \033[0m
+
+# ---
+
+# if ran without root, prompt to try again with root.
+define check_root
+	@if [ "$$(id -u)" -ne 0 ]; then \
+		echo -e "$(RED)$(BOLD)Error: Root permissions required!$(RESET)"; \
+		echo ""; \
+		echo -e "$(YELLOW)Please run with: sudo make $(1)$(RESET)"; \
+		echo -e "$(YELLOW)             or: doas make $(1)$(RESET)"; \
+		echo -e "$(YELLOW)... or simply logged in as a root user.$(RESET)"; \
+		echo ""; \
+		exit 1; \
+	fi
+endef
 
 # ---
 
@@ -64,6 +79,7 @@ help:
 # stow
 ## stows /etc and /usr individually, since these are outside of $HOME
 install:
+	$(call check_root,install)
 	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto $(HOME)$(RESET)"
 	@$(call stow,$(HOME),$(DOTFILES))
 	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto /usr$(RESET)"
@@ -74,6 +90,7 @@ install:
 # kaboom
 ## first /usr, then /etc, to avoid issues with doas.conf
 uninstall:
+	$(call check_root,uninstall)
 	@echo -e "$(CYAN)-> Unstowing $(DOTFILES) from $(HOME)$(RESET)"
 	@$(call stow,$(HOME),--delete $(DOTFILES))
 	@echo -e "$(CYAN)-> Unstowing $(DOTFILES) from /usr$(RESET)"
@@ -83,6 +100,7 @@ uninstall:
 
 # dry-run (adding/testing xstow before committing)
 test:
+	$(call check_root,test)
 	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto $(HOME)$(RESET)"
 	@$(call stow,$(HOME),--no $(DOTFILES))
 	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto /usr$(RESET)"

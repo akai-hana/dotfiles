@@ -30,6 +30,8 @@ abbr sx "startx"
 abbr d  "cd"
 abbr q  "exit"
 abbr ff "fastfetch"
+abbr us "setxkbmap us"
+abbr es "setxkbmap es"
 
 ## overrides
 abbr mkdir "mkdir -p"

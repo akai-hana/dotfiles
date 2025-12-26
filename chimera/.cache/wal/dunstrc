@@ -1,0 +1,19 @@
+[global]
+    frame_color = "#C0393A"
+    separator_color = "#C0393A"
+    font = Monospace 10
+    
+[urgency_low]
+    background = "#0F0F14"
+    foreground = "#e0ded0"
+    timeout = 5
+
+[urgency_normal]
+    background = "#0F0F14"
+    foreground = "#e0ded0"
+    timeout = 10
+
+[urgency_critical]
+    background = "#3F3F51"
+    foreground = "#e0ded0"
+    timeout = 0
