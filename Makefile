@@ -37,18 +37,18 @@ RESET   = \033[0m
 
 # ---
 
-# if ran without root, prompt to try again with root.
-define check_root
-	@if [ "$$(id -u)" -ne 0 ]; then \
+# ROOT CHECK MACRO
+# bmake doesn't support define/endef, so we use a shell variable
+CHECK_ROOT = \
+	if [ "$$(id -u)" -ne 0 ]; then \
 		echo -e "$(RED)$(BOLD)Error: Root permissions required!$(RESET)"; \
 		echo ""; \
-		echo -e "$(YELLOW)Please run with: sudo make $(1)$(RESET)"; \
-		echo -e "$(YELLOW)             or: doas make $(1)$(RESET)"; \
+		echo -e "$(YELLOW)Please run with: doas bmake $@$(RESET)"; \
+		echo -e "$(YELLOW)             or: sudo bmake $@$(RESET)"; \
 		echo -e "$(YELLOW)... or simply logged in as a root user.$(RESET)"; \
 		echo ""; \
 		exit 1; \
 	fi
-endef
 
 # ---
 
@@ -56,9 +56,6 @@ endef
 
 # formatting wrapper
 RUN = sh formatting_wrapper.sh
-
-# main stow function
-stow = $(RUN) xstow --target=$(1) $(2) --verbose=$(VERBOSE_LEVEL) # do not force this
 
 # help (default target)
 help:
@@ -79,31 +76,31 @@ help:
 # stow
 ## stows /etc and /usr individually, since these are outside of $HOME
 install:
-	$(call check_root,install)
+	@$(CHECK_ROOT)
 	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto $(HOME)$(RESET)"
-	@$(call stow,$(HOME),$(DOTFILES))
+	@$(RUN) xstow --target=$(HOME) $(DOTFILES) --verbose=$(VERBOSE_LEVEL)
 	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto /usr$(RESET)"
-	@$(call stow,/usr,$(DOTFILES)/usr)
+	@$(RUN) xstow --target=/usr $(DOTFILES)/usr --verbose=$(VERBOSE_LEVEL)
 	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto /etc$(RESET)"
-	@$(call stow,/etc,$(DOTFILES)/etc)
+	@$(RUN) xstow --target=/etc $(DOTFILES)/etc --verbose=$(VERBOSE_LEVEL)
 
 # kaboom
 ## first /usr, then /etc, to avoid issues with doas.conf
 uninstall:
-	$(call check_root,uninstall)
+	@$(CHECK_ROOT)
 	@echo -e "$(CYAN)-> Unstowing $(DOTFILES) from $(HOME)$(RESET)"
-	@$(call stow,$(HOME),--delete $(DOTFILES))
+	@$(RUN) xstow --target=$(HOME) --delete $(DOTFILES) --verbose=$(VERBOSE_LEVEL)
 	@echo -e "$(CYAN)-> Unstowing $(DOTFILES) from /usr$(RESET)"
-	@$(call stow,/usr,--delete $(DOTFILES)/usr)
+	@$(RUN) xstow --target=/usr --delete $(DOTFILES)/usr --verbose=$(VERBOSE_LEVEL)
 	@echo -e "$(CYAN)-> Unstowing $(DOTFILES) from /etc$(RESET)"
-	@$(call stow,/etc,--delete $(DOTFILES)/etc)
+	@$(RUN) xstow --target=/etc --delete $(DOTFILES)/etc --verbose=$(VERBOSE_LEVEL)
 
 # dry-run (adding/testing xstow before committing)
 test:
-	$(call check_root,test)
+	@$(CHECK_ROOT)
 	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto $(HOME)$(RESET)"
-	@$(call stow,$(HOME),--no $(DOTFILES))
+	@$(RUN) xstow --target=$(HOME) --no $(DOTFILES) --verbose=$(VERBOSE_LEVEL)
 	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto /usr$(RESET)"
-	@$(call stow,/usr,--no $(DOTFILES)/usr)
+	@$(RUN) xstow --target=/usr --no $(DOTFILES)/usr --verbose=$(VERBOSE_LEVEL)
 	@echo -e "$(CYAN)-> Dry-run stowing $(DOTFILES) onto /etc$(RESET)"
-	@$(call stow,/etc,--no $(DOTFILES)/etc)
+	@$(RUN) xstow --target=/etc --no $(DOTFILES)/etc --verbose=$(VERBOSE_LEVEL)
