@@ -84,5 +84,5 @@ abbr xresources "vim ~/.xresources"
 ## tools
 abbr vimrc      "vim ~/.vimrc"
 abbr fishconf   "vim ~/.config/fish/config.fish"
-abbr dwmconf    "vim ~/.suckless/dwm-6.4/config.h"
+abbr dwmconf    "vim ~/eudaimonia/suckless/dwm-6.4/config.h"
 abbr ghosconf   "vim ~/.config/ghostty/config"

@@ -72,7 +72,7 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 ~/eudaimonia/scripts/arrpc.sh &
 
 # auto-sync eudaimonia
-~/eudaimonia/auto-push.sh &
+~/eudaimonia/push.sh &
 
 # TODO: move to dedicated pause/resume shader wallpaper script
 #renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
