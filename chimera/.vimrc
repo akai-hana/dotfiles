@@ -1,8 +1,20 @@
 source $VIMRUNTIME/defaults.vim
 
 syntax on
-
+set nomodeline
 set background=dark
+set nocompatible
+
+set bs=2       " Allow backspacing over everything in insert mode
+set ai         " Always set auto-indenting on
+set history=50 " keep 50 lines of command history
+set ruler      " Show the cursor position all the time
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" When doing tab completion, give the following files lower priority.
+set suffixes+=.info,.aux,.log,.dvi,.bbl,.out,.o,.lo
 
 " Uncomment the following to have Vim jump to the last position when
 " reopening a file
@@ -23,11 +35,6 @@ set autowrite  " Automatically save before commands like :next and :make
 set hidden     " Hide buffers when they are abandoned
 set mouse=a    " Enable mouse usage (all modes)
 
-" Source a global configuration file if available
-if filereadable("/etc/vim/vimrc.local")
-	source /etc/vim/vimrc.local
-endif
-
 " make colors coherent
 " (this setting only makes sense with my xresources color palette)
 set t_Co=255
@@ -37,7 +44,7 @@ set rnu
 set nu
 
 "" improve visual mode block indenting
-" remains in visual mode after block indenting, to not have to re-enter it every time 
+" remains in visual mode after block indenting, to not have to re-enter it every time
 vnoremap < <gv
 vnoremap > >gv
 
@@ -74,16 +81,17 @@ Plug 'vimsence/vimsence' " discord RPC
 
 call plug#end()
 
-" Trigger a highlight in the appropriate direction when pressing these keys:
+" trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 
 " vim-easy-align binds setup
-" Start interactive EasyAlign in visual mode (e.g. vipga)
+" start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
 
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
 " minimap and airline xresources theme init
 let g:minimap_auto_start = 1
 let g:airline_theme = 'base16'
+

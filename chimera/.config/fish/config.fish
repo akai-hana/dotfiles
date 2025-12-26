@@ -3,6 +3,7 @@
 fish_vi_key_bindings
 
 set -gx PATH $PATH $HOME/.cargo/bin
+set -gx PATH $PATH /root/.cargo/bin
 set -gx PATH $PATH $HOME/.local/bin
 
 ### MY HORRENDOUS LIST OF ABBREVIATIONS ###  
