@@ -1,0 +1,36 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+/* Hide tab bar */
+#TabsToolbar {
+    visibility: collapse !important;
+}
+/* bring the browser window to the top */
+#browser {
+	-moz-box-ordinal-group: 0 !important;
+	order: 0 !important;
+}
+#navigator-toolbox,
+#navigator-toolbox-background {
+	-moz-box-ordinal-group: 1 !important;
+	order: 1 !important;
+}
+/* adjust paddings */
+*|*:root[sizemode="normal"] #browser {
+	padding-top: 0 !important;
+}
+/* hide titlebar buttons */
+#TabsToolbar > .titlebar-buttonbox-container {
+	display: none !important;
+}
+/*fix pop-ups opening below window*/
+#urlbar[open]{
+	display: flex !important;
+	flex-direction: column-reverse;
+	bottom: -2px !important;
+	top: auto !important;
+}
+
+/* Completely hide toolbar in fullscreen */
+*|*:root[inFullscreen] #navigator-toolbox {
+    visibility: collapse !important;
+    display: none !important;
+}

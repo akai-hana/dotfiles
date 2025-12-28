@@ -79,10 +79,12 @@ install:
 	@$(CHECK_ROOT)
 	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto $(HOME)$(RESET)"
 	@$(RUN) xstow --target=$(HOME) $(DOTFILES) --verbose=$(VERBOSE_LEVEL)
-	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto /usr$(RESET)"
-	@$(RUN) xstow --target=/usr $(DOTFILES)/usr --verbose=$(VERBOSE_LEVEL)
 	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto /etc$(RESET)"
 	@$(RUN) xstow --target=/etc $(DOTFILES)/etc --verbose=$(VERBOSE_LEVEL)
+	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto /usr$(RESET)"
+	@$(RUN) xstow --target=/usr $(DOTFILES)/usr --verbose=$(VERBOSE_LEVEL)
+	@echo -e "$(CYAN)-> Stowing $(DOTFILES) onto /dev$(RESET)"
+	@$(RUN) xstow --target=/dev $(DOTFILES)/dev --verbose=$(VERBOSE_LEVEL)
 
 # kaboom
 ## first /usr, then /etc, to avoid issues with doas.conf
