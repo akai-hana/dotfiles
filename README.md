@@ -34,12 +34,13 @@
 
 ## 🚀 Quick Start
 
-### Cloning
+### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GitHub.svg" width="40" height="40"> Cloning
 ```sh
 git clone https://github.com/akai-hana/dotfiles
 ```
 
-### Stowing (with xstow)
+
+### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GNU_stow.png" width="40" height="40"> Stowing (with xstow)
 You can easily stow and unstow these dotfiles onto your system with the provided Makefile.
 
 > These dotfiles only officially support xstow.
@@ -105,11 +106,6 @@ make install
 - [ ] Write about goals of these dotfiles
 - [ ] Link to my other repos
 - [ ] Mention eudaimonia in documentation
-
-***
-
-## 📄 License
-Feel free to use and modify these configs for your own setup!
 
 ***
 
