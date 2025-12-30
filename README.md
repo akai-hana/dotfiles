@@ -1,4 +1,4 @@
-these are my dotfiles.
+[these are my dotfiles.](https://raw.githubusercontent.com/akai-hana/assets/04ff5e782ddbf65d4cee35a2f41cbff78519c88e/o-frag-160.gif)
 <!-- -->
 you're welcome to take anything you might like. :)
 
