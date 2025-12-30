@@ -2,7 +2,7 @@
 <h1>akai's dotfiles!</h1>
 </div>
 
-https://raw.githubusercontent.com/akai-hana/assets/main/o-frag-160.gif
+![](https://raw.githubusercontent.com/akai-hana/assets/main/o-frag-160.gif)
 <!-- -->
 you're welcome to take anything you might like. :)
 
