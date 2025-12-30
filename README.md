@@ -34,13 +34,13 @@
 
 ## 🚀 Quick Start
 
-### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GitHub.svg" width="40" height="40"> Cloning
+### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GitHub.svg" width="25" height="25"> Cloning
 ```sh
 git clone https://github.com/akai-hana/dotfiles
 ```
 
-
-### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GNU_stow.png" width="40" height="40"> Stowing (with xstow)
+<!-- Not specifying height in the icon makes it so that it preserves the exact original image ratio -->
+### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GNU_stow.png" width="25"> Stowing (with xstow)
 You can easily stow and unstow these dotfiles onto your system with the provided Makefile.
 
 > These dotfiles only officially support xstow.
