@@ -1,4 +1,8 @@
-![these are my dotfiles](https://raw.githubusercontent.com/akai-hana/assets/main/o-frag-160.gif)
+<div align="center">
+<h1>akai's dotfiles!</h1>
+</div>
+
+https://raw.githubusercontent.com/akai-hana/assets/main/o-frag-160.gif
 <!-- -->
 you're welcome to take anything you might like. :)
 
