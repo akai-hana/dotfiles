@@ -8,7 +8,7 @@
 <!-- Subtitle -->
 <div align="center">
   <p>
-    <i>A minimal, aesthetic rice featuring dwm, shader wallpapers, and carefully curated tools for a productive workflow.</i>
+    <i>A minimal rice based on Milk Outside a Bag of Milk.</i>
   </p>
 </div>
 
