@@ -2,15 +2,9 @@
 
 <!-- Title -->
 <div align="center">
-<h1>~ akai's dotfiles! ~</h1>
-</div>
 
-<!-- Subtitle -->
-<div align="center">
-  <p>
-    <i>A minimal rice based on Milk Outside a Bag of Milk.</i>
-  </p>
-</div>
+# ~ akai's dotfiles! ~
+minimal rice based on the game [Milk outside a bag of milk outside a bag of milk](https://store.steampowered.com/app/1604000/Milk_outside_a_bag_of_milk_outside_a_bag_of_milk)
 
 <!-- Desktop preview -->
 ![](https://raw.githubusercontent.com/akai-hana/assets/main/o-frag-160.gif)
@@ -19,96 +13,96 @@
 ![Chimera Linux](https://img.shields.io/badge/Distro-Chimera_Linux-magenta)
 ![Maintained](https://img.shields.io/badge/Maintained-Yes-green)
 
+</div>
+
 <!-- BODY -->
 
-***
+---
 
-## 📸 Preview
-<p>
-  <blockquote>
-    <i>Soon™</i>
-  </blockquote>
-</p>
+## preview
 
-***
+> *Soon™*
+> <!-- TODO: place video link here -->
 
-## 🚀 Quick Start
+---
 
-### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GitHub.svg" width="25" height="25"> Cloning
+## installation
+
+### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GitHub.svg" width="25" height="25"> cloning
 ```sh
 git clone https://github.com/akai-hana/dotfiles
 ```
 
 <!-- Not specifying height in the icon makes it so that it preserves the exact original image ratio -->
-### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GNU_stow.png" width="25"> Stowing (with xstow)
-You can easily stow and unstow these dotfiles onto your system with the provided Makefile.
+### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GNU_stow.png" width="25"> stowing (with `xstow`)
 
-> These dotfiles only officially support xstow.
+you can easily stow and unstow these dotfiles onto your system with the provided `Makefile`.
+
+> these dotfiles only officially support `xstow`.
 > 
-> Any pull requests that add compatibility with other tools are always welcome. :)
+> any pull requests that add compatibility with other tools are always welcome. :)
 
-Before installing, I firstly recommend testing whether everything will work correctly: 
+before installing, i recommend testing whether everything will work correctly: 
 ```sh
-# With root permissions,
+# with root permission privileges, or logged in as a root user:
 make test
 ```
 
-If there's no complaints, you can proceed to install without any worries:
+if there's no complaints, you can proceed to install without any worries:
 ```sh
-# With root permissions,
+# with root permission privileges, or logged in as a root user:
 make install
 ```
 
-> This Makefile supports both `gmake` and `bmake`. This means it supports both Linux and *BSD.
+> [this](https://github.com/akai-hana/dotfiles/blob/main/Makefile) `Makefile` is fully UNIX-compliant, with the objective to be as cross-compatible as possible.
 >
-> Feel free to use the tool that's more convenient to you. :)
+> as a result, it supports both GNU's and BSD's make implementations, `gmake` and `bmake`, supporting both operative systems, and potentially any other UNIX-based OS.
 
-***
+---
 
-## ⚙️ System
-+ **window manager:** dwm [(my custom build)](https://github.com/akai-hana/suckless)
-+ **distro:** [Chimera Linux](https://chimera-linux.org)
+## specs
 
-***
+#### system
 
-<details>
++ **OS/distro:** [Chimera Linux](https://chimera-linux.org/)
++ **window manager:** dwm [(my custom build)](https://github.com/akai-hana/suckless/)
++ **wallpaper:** upon boot, a randomly picked shader from [here](https://github.com/akai-hana/shader-wallpaper/tree/main/shadow/), using [this project](https://github.com/danielfvm/shadow/) along with the help of my [script utilities](https://github.com/akai-hana/shader-wallpaper/tree/main/shadow/scripts/)
+---
 
-  <summary><b>🔧 Full Software Stack</b></summary>
+#### tools
 
-### 🛠️ Apps/Tools
-
-#### Development
 + **terminal:** ghostty
 + **shell:** fish
-+ **font:** firacode + nerdfonts + ligatures *(monospaced for code and proportional for UI's)*
-+ **text editor:** vim for config editing and DOOM emacs as a working IDE
-+ **file explorer:** yazi *(to browse files)* and broot *(if i want to execute specific files, like videos or audios)*
++ **font:** firacode *(with nerdfonts and ligatures)*
++ **text editor:** vim for config editing.
+> *TODO: learn emacs and elisp, configure emacs as an IDE*
++ **file explorer:** yazi
+> *TODO: learn broot; seems like a more powerful tool, but will require learning*
 
-#### Media
+#### media
+
++ **browser:** firefox *(previously zen, but switched due to performance issues. sidebery is already half of what i liked out of zen)*
++ **discord client:** [equibop](https://equibop.org/) *(fork of [Vesktop](https://vesktop.dev/) (fork of [Vencord](https://vencord.dev/) (fork of... discord.)))*
 + **video/audio player:** mpv
-+ **browser:** firefox (with sidebery and custom css, better performance than zen)
-+ **discord client:** equibop
-+ **music:** youtube music (th-ch's wrapper)
++ **youtube client:** [freetube](https://freetubeapp.io/)
++ **music:** youtube music *(specifically the client [Pear Desktop](https://github.com/pear-devs/pear-desktop/))*
 + **torrent client:** deluge
 
-#### Aesthetics
-+ **wallpaper:** upon boot, a randomly picked shader from [here](https://github.com/akai-hana/shader-wallpaper/tree/main/shadow), using [this project](https://github.com/danielfvm/shadow)
-> For more info on wallpaper setup, check [this little guide](https://github.com/akai-hana/shader-wallpaper/blob/main/README.md).
-
-</details>
-
-***
+---
 
 ## 📋 TODO
-- [ ] Video demonstration
-- [ ] Keybindings documentation
-- [ ] Finish installation documentation
-- [ ] Write about goals of these dotfiles
-- [ ] Link to my other repos
-- [ ] Mention eudaimonia in documentation
 
-***
+- [ ] video demonstration
+- [ ] keybindings documentation
+- [ ] finish installation documentation
+- [ ] write about goals of these dotfiles
+- [ ] link to my other repos
+- [ ] mention eudaimonia in documentation
+
+---
 
 <div align="center">
-  Made with ❤️
+
+made with ❤️ by akai
+
 </div>
