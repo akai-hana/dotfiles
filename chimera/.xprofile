@@ -7,6 +7,10 @@ EUDAIMONIA="$HOME/eudaimonia" # suite location
 export XCURSOR_THEME=milk-cursor
 export XCURSOR_PATH=~/.local/share/icons:~/.icons:/usr/share/icons
 
+
+# swap capslock/esc and Lalt/Lsuper
+setxkbmap -layout us -option caps:swapescape -option altwin:swap_lalt_lwin
+
 # make keyboard repeat rates faster so holding keys is not slow af
 xset r rate 200 40 &
 
