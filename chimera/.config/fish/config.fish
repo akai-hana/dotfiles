@@ -30,8 +30,8 @@ abbr sx "startx"
 abbr d  "cd"
 abbr q  "exit"
 abbr ff "fastfetch"
-abbr us "setxkbmap us"
-abbr es "setxkbmap es"
+abbr us "setxkbmap -layout us -option caps:swapescape -option altwin:swap_lalt_lwin"
+abbr es "setxkbmap -layout es -option caps:swapescape -option altwin:swap_lalt_lwin"
 
 ## overrides
 abbr mkdir "mkdir -p"
