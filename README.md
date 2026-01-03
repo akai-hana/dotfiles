@@ -10,7 +10,7 @@ minimal rice based on the game [Milk outside a bag of milk outside a bag of milk
 ![](https://raw.githubusercontent.com/akai-hana/assets/main/o-frag-160.gif)
 
 <!-- Badges -->
-![Chimera Linux](https://img.shields.io/badge/Distro-Chimera_Linux-magenta)
+![Chimera Linux](https://img.shields.io/badge/OS-Chimera_Linux-magenta)
 ![Maintained](https://img.shields.io/badge/Maintained-Yes-green)
 
 </div>
