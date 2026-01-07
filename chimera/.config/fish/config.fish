@@ -56,29 +56,30 @@ abbr suckstall "doas bmake clean install" # sorry but i love the name
 set -g EZA_FULL   "eza --color=always --icons=always --classify=always"
 set -g EZA_SIMPLE "$EZA_FULL --no-permissions --no-user --no-time --no-filesize"
 
-abbr e  "$EZA_SIMPLE"
-abbr fe "$EZA_FULL"
+alias e  "$EZA_SIMPLE"
+alias fe "$EZA_FULL"
 
-abbr ls  "$EZA_SIMPLE"
-abbr fls "$EZA_FULL"
+alias ls  "$EZA_SIMPLE"
+alias fls "$EZA_FULL"
 
-abbr l   "$EZA_SIMPLE -l"
-abbr fl  "$EZA_FULL -l"
-abbr a   "$EZA_SIMPLE -a"
-abbr fa  "$EZA_FULL -a"
-abbr la  "$EZA_SIMPLE -la"
-abbr fla "$EZA_FULL -la"
+alias l   "$EZA_SIMPLE -l"
+alias fl  "$EZA_FULL -l"
+alias a   "$EZA_SIMPLE -a"
+alias fa  "$EZA_FULL -a"
+alias la  "$EZA_SIMPLE -la"
+alias fla "$EZA_FULL -la"
 
 abbr symlinks "grep -i '\->'" # little hack: pipe eza into this to filter by symlinks
                               # (theres probably a better way to do this but whatever)
 
 # git
-abbr ga  "git add"
-abbr ga. "git add ."
-abbr gc  "git commit"
-abbr gcm "git commit -m"
-abbr gp  "git push"
-abbr gl  "git pull"
+abbr ga   "git add"
+abbr ga.  "git add ."
+abbr gc   "git commit"
+abbr gcm  "git commit -m"
+abbr gcma "git commit --amend -m"
+abbr gp   "git push"
+abbr gl   "git pull"
 
 # config shortcuts
 ## x11
