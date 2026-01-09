@@ -81,6 +81,13 @@ abbr gcma "git commit --amend -m"
 abbr gp   "git push"
 abbr gl   "git pull"
 
+# Zig
+abbr zb  "zig build"
+abbr zbr "zig build run"
+
+# Vim
+abbr v "vim"
+
 # config shortcuts
 ## x11
 abbr xinitrc    "vim ~/.xinitrc"
@@ -92,3 +99,8 @@ abbr vimrc      "vim ~/.vimrc"
 abbr fishconf   "vim ~/.config/fish/config.fish"
 abbr dwmconf    "vim ~/eudaimonia/suckless/dwm-6.4/config.h"
 abbr ghosconf   "vim ~/.config/ghostty/config"
+
+# ZVM
+set -gx ZVM_INSTALL "$HOME/.zvm/self"
+set -gx PATH $PATH "$HOME/.zvm/bin"
+set -gx PATH $PATH "$ZVM_INSTALL/"

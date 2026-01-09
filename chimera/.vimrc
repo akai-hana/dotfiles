@@ -56,6 +56,8 @@ vnoremap <silent> "+y  y:call  system('xclip -selection clipboard', @")<CR>
 nnoremap <silent> "+yy yy:call system('xclip -selection clipboard', @")<CR>
 nnoremap <silent> "+y y:call   system('xclip -selection clipboard', @")<CR>
 
+let g:polyglot_disabled = ['zig'] " is buggy for some reason
+
 " Plugin list starts here
 call plug#begin('~/.vim/plugged')
 
@@ -65,6 +67,7 @@ Plug 'jiangmiao/auto-pairs' " also a sensible default
 Plug 'tpope/vim-surround'   " cs'` to change 'text' to `text`
 
 Plug 'sheerun/vim-polyglot' " Syntax for everything
+Plug 'ziglang/zig.vim'      " ... Except Zig which doesn't work for some reason
 
 Plug 'mhinz/vim-startify' " better menu screen with numerical file selection history
 
@@ -92,6 +95,6 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 " minimap and airline xresources theme init
-let g:minimap_auto_start = 1
-let g:airline_theme = 'base16'
-
+let g:minimap_auto_start = 1      " enable minimap
+let g:airline_theme = 'base16'    " Xresources
+let g:zig_fmt_autosave = 0        " no auto formatting on file save
