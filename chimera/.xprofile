@@ -80,3 +80,6 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 
 # TODO: move to dedicated pause/resume shader wallpaper script
 #renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
+
+sleep 2
+DISPLAY=:1 ~/Games/t-client/DDNet
