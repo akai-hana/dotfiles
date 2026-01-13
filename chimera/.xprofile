@@ -20,7 +20,7 @@ doas mount /dev/nvme1n1p2 ~/mount &
 # dwm
 
 ## setup date and clock
-slstatus &
+#slstatus &
 
 # screen
 
@@ -32,10 +32,10 @@ $EUDAIMONIA/lenovo-legion/argyll/bin/dispwin $EUDAIMONIA/lenovo-legion/Lenovo-Le
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
 
 ## compositing for transparency and gaussian blur
-picom &
+#picom &
 
 ## shader wallpaper randomized from a selection
-$EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
+#$EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
 # auto-pause/resume shader rendering and compositing if fullscreen or inside a game to avoid latency/input lag
 #~/.scripts/shader-fullscreen-pause.sh &
 
@@ -81,5 +81,5 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 # TODO: move to dedicated pause/resume shader wallpaper script
 #renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
 
-sleep 2
-DISPLAY=:1 ~/Games/t-client/DDNet
+#sleep 2
+#DISPLAY=:1 ~/Games/t-client/DDNet
