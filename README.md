@@ -98,6 +98,7 @@ make install
 - [ ] write about goals of these dotfiles
 - [ ] link to my other repos
 - [ ] mention eudaimonia in documentation
+- [ ] mv -n alias
 
 ---
 
