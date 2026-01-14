@@ -104,3 +104,6 @@ abbr ghosconf   "vim ~/.config/ghostty/config"
 set -gx ZVM_INSTALL "$HOME/.zvm/self"
 set -gx PATH $PATH "$HOME/.zvm/bin"
 set -gx PATH $PATH "$ZVM_INSTALL/"
+
+# opencode
+fish_add_path /home/akai/.opencode/bin
