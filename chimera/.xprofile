@@ -7,7 +7,6 @@ EUDAIMONIA="$HOME/eudaimonia" # suite location
 export XCURSOR_THEME=milk-cursor
 export XCURSOR_PATH=~/.local/share/icons:~/.icons:/usr/share/icons
 
-
 # swap capslock/esc and Lalt/Lsuper
 setxkbmap -layout us -option caps:swapescape -option altwin:swap_lalt_lwin
 
@@ -20,7 +19,7 @@ doas mount /dev/nvme1n1p2 ~/mount &
 # dwm
 
 ## setup date and clock
-#slstatus &
+slstatus &
 
 # screen
 
@@ -32,7 +31,7 @@ $EUDAIMONIA/lenovo-legion/argyll/bin/dispwin $EUDAIMONIA/lenovo-legion/Lenovo-Le
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
 
 ## compositing for transparency and gaussian blur
-#picom &
+picom &
 
 ## shader wallpaper randomized from a selection
 #$EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
@@ -80,6 +79,3 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 
 # TODO: move to dedicated pause/resume shader wallpaper script
 #renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
-
-#sleep 2
-#DISPLAY=:1 ~/Games/t-client/DDNet
