@@ -83,6 +83,7 @@ abbr gl   "git pull"
 
 # Zig
 abbr zb  "zig build"
+abbr zbd "zig build -Doptimize=Debug"
 abbr zbr "zig build run"
 
 # Vim
