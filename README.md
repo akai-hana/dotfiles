@@ -99,6 +99,7 @@ make install
 - [ ] link to my other repos
 - [ ] mention eudaimonia in documentation
 - [ ] mv -n alias
+- [ ] replace cat with bat, custom config.fish setup
 
 ---
 
