@@ -1,4 +1,5 @@
 # akai's fish config! :>
+fastfetch
 
 fish_vi_key_bindings
 

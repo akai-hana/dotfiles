@@ -2,7 +2,7 @@ shell-integration = fish
 config-file       = ~/.cache/wal/colors-ghostty.conf
 
 font-family = FiraCode Nerd Font Ret
-font-size   = 15
+font-size   = 13
 
 window-decoration = "none"
 window-padding-x  = 0
