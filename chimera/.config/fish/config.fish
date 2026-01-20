@@ -86,6 +86,7 @@ abbr gl   "git pull"
 abbr zb  "zig build"
 abbr zbd "zig build -Doptimize=Debug"
 abbr zbr "zig build run"
+abbr zv  "zig version"
 
 # Vim
 abbr v "vim"
