@@ -4,6 +4,8 @@
 
     "logo": {
         "source": "~/.config/fastfetch/copland-shell.txt",
+        // "source": "~/.config/fastfetch/chimera-shell-27.txt",
+        // "source": "~/.config/fastfetch/chimera-copland.txt",
         "padding": {
             "top": 1
             }
@@ -39,7 +41,7 @@
         },
         {
             "type": "packages",
-            "format": "{} (portage)",
+            "format": "{} (apk-v3)",
             "key": " ",
             "keyColor": "31",
         },

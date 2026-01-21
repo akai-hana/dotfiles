@@ -80,6 +80,7 @@ abbr gc   "git commit"
 abbr gcm  "git commit -m"
 abbr gcam "git commit --amend -m"
 abbr gp   "git push"
+abbr gpf  "git push --force"
 abbr gl   "git pull"
 
 # Zig
