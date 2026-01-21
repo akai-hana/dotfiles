@@ -34,7 +34,7 @@ $EUDAIMONIA/lenovo-legion/argyll/bin/dispwin $EUDAIMONIA/lenovo-legion/Lenovo-Le
 picom &
 
 ## shader wallpaper randomized from a selection
-#$EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
+$EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
 # auto-pause/resume shader rendering and compositing if fullscreen or inside a game to avoid latency/input lag
 #~/.scripts/shader-fullscreen-pause.sh &
 
