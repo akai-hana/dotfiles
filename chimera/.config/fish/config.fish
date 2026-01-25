@@ -19,7 +19,6 @@ abbr upd   "doas apk update; doas apk upgrade --prune"
 ### TODO: make some functions to make them distro-aware and agnostic
 
 ## calls
-alias sudo    "doas"
 abbr reboot   "doas reboot"
 abbr poweroff "doas poweroff"
 abbr quitw    "doas poweroff"
