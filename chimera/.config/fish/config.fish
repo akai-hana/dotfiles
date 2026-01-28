@@ -83,8 +83,9 @@ abbr gpf  "git push --force"
 abbr gl   "git pull"
 
 # Zig
-abbr zb  "zig build"
-abbr zbd "zig build -Doptimize=Debug"
+abbr zb "zig build --color on 2>&1 | sed -E '/failed command:/,/Build Summary:/d'"
+abbr zbd "zig build -Doptimize=Debug --color on 2>&1 | sed -E '/failed command:/,/Build Summary:/d'"
+
 abbr zbr "zig build run"
 abbr zv  "zig version"
 
