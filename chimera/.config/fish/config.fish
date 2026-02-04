@@ -44,6 +44,7 @@ abbr make  "doas make"
 abbr bmake "doas bmake"
 abbr gmake "doas gmake"
 abbr btop  "btop --force-utf"
+abbr sed   "sed -i ''"
 
 ## utilities
 abbr own       "doas chown -R $USER:$USER"
@@ -85,8 +86,8 @@ abbr gl   "git pull"
 abbr zb "zig build -freference-trace=20 --color on 2>&1 | sed -E '/failed command:/,/Build Summary:/d'"
 abbr zbd "zig build -Doptimize=Debug -freference-trace=20 --color on 2>&1 | sed -E '/failed command:/,/Build Summary:/d'"
 
-abbr zbr "zig build run"
 abbr zv  "zig version"
+abbr zbr "zig build run"
 
 # Vim
 abbr v "vim"
@@ -98,10 +99,11 @@ abbr xprofile   "vim ~/.xprofile"
 abbr xresources "vim ~/.xresources"
 
 ## tools
-abbr vimrc      "vim ~/.vimrc"
-abbr fishconf   "vim ~/.config/fish/config.fish"
-abbr dwmconf    "vim ~/eudaimonia/suckless/dwm-6.4/config.h"
-abbr ghosconf   "vim ~/.config/ghostty/config"
+abbr vimrc    "vim ~/.vimrc"
+abbr fishconf "vim ~/.config/fish/config.fish"
+abbr dwmconf  "vim ~/eudaimonia/suckless/dwm-6.4/config.h"
+abbr ghosconf "vim ~/.config/ghostty/config"
+abbr hanaconf "vim ~/.config/hana/config.toml"
 
 # ZVM
 set -gx ZVM_INSTALL "$HOME/.zvm/self"
