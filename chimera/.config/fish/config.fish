@@ -43,7 +43,6 @@ abbr ln    "doas ln -s"
 abbr make  "doas make"
 abbr bmake "doas bmake"
 abbr gmake "doas gmake"
-abbr grep  "grep -i"
 abbr btop  "btop --force-utf"
 
 ## utilities
