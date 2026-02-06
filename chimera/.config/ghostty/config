@@ -7,7 +7,6 @@ font-size   = 13
 window-decoration = "none"
 window-padding-x  = 0
 
-background-opacity = 0.7
-background-blur-radius = 20
+background-opacity = 0.5
 
 confirm-close-surface = false
