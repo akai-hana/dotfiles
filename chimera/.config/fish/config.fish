@@ -112,3 +112,5 @@ set -gx PATH $PATH "$ZVM_INSTALL/"
 
 # opencode
 fish_add_path /home/akai/.opencode/bin
+
+thefuck --alias | source
