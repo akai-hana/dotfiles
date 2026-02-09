@@ -7,6 +7,6 @@ font-size   = 13
 window-decoration = "none"
 window-padding-x  = 0
 
-background-opacity = 0.75
+background-opacity = 0.7
 
 confirm-close-surface = false
