@@ -79,6 +79,8 @@ Plug 'preservim/nerdtree'
 
 Plug 'Stoozy/vimcord' " discord RPC
 
+Plug 'gko/vim-coloresque'
+
 call plug#end()
 
 " trigger a highlight in the appropriate direction when pressing these keys:
