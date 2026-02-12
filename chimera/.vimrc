@@ -79,9 +79,12 @@ Plug 'preservim/nerdtree'
 
 Plug 'Stoozy/vimcord' " discord RPC
 
-Plug 'gko/vim-coloresque'
+Plug 'gko/vim-coloresque' " ?
 
 call plug#end()
+
+syntax on
+filetype plugin on
 
 " trigger a highlight in the appropriate direction when pressing these keys:
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
