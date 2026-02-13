@@ -74,7 +74,7 @@ Plug 'vim-airline/vim-airline-themes' " base16 support (native terminal colors)
 Plug 'tpope/vim-commentary'    " `gcc` || `gc<motion>`
 Plug 'junegunn/vim-easy-align' " `vipga<symbol>` || `gaip<symbol>`
 
-Plug 'wfxr/minimap.vim' " Cool minimap
+" Plug 'wfxr/minimap.vim' " Cool minimap
 Plug 'preservim/nerdtree'
 
 Plug 'Stoozy/vimcord' " discord RPC
