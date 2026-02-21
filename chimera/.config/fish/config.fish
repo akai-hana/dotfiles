@@ -50,7 +50,7 @@ abbr sed   "sed -i ''"
 abbr own       "doas chown -R $USER:$USER"
 abbr suckstall "doas bmake clean install" # sorry but i love the name
 
-### TO-DO: make "bak" abbr that takes a file as an argument and moves it to itself + .bak on its name, and if it already has a ".bak", it "unbaks" it; dont do it as a script, write it out as a function in here, i think it'll be better that way
+alias bak "~/eudaimonia/scripts/bak.sh"
 
 ## ls/eza
 set -g EZA_FULL   "eza --color=always --icons=always --classify=always"
