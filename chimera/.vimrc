@@ -37,7 +37,7 @@ set mouse=a    " Enable mouse usage (all modes)
 
 " make colors coherent
 " (this setting only makes sense with my xresources color palette)
-set t_Co=255
+set t_Co=16
 
 " basic number and relative number on the left
 set rnu

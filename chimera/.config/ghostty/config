@@ -1,5 +1,5 @@
 shell-integration = fish
-config-file       = ~/.cache/wal/colors-ghostty.conf
+config-file = ~/.config/ghostty/colors
 
 font-family = FiraCode Nerd Font Ret
 font-size   = 13
