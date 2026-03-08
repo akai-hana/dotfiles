@@ -62,7 +62,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'tpope/vim-sensible'   " 'Think of sensible.vim as one step above nocompatible' -tpope
 
 Plug 'jiangmiao/auto-pairs' " also a sensible default
-Plug 'tpope/vim-surround'   " cs'` to change 'text' to `text`
+Plug 'akai-hana/vim-surround'  " cs'` to change 'text' to `text`
 
 Plug 'ziglang/zig.vim'      " ... Except Zig which doesn't work for some reason
 
