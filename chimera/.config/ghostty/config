@@ -1,11 +1,17 @@
+custom-shader = shaders/cursor_smear.glsl
+
 shell-integration = fish
 config-file = ~/.config/ghostty/colors
 
 font-family = FiraCode Nerd Font Ret
 font-size   = 13
 
+alpha-blending = linear
+
 window-decoration = "none"
 window-padding-x  = 0
+
+gtk-titlebar = false
 
 background-opacity = 0.7
 
