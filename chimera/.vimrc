@@ -83,6 +83,12 @@ Plug 'gko/vim-coloresque' " ?
 
 call plug#end()
 
+let mapleader = "\<Space>"
+nnoremap <Leader>h ^dwipick<Esc>j
+nnoremap <Leader>j ^dwisquash<Esc>j
+nnoremap <Leader>k ^dwireword<Esc>j
+nnoremap <Leader>l ^dwiedit<Esc>j
+
 syntax on
 filetype plugin on
 

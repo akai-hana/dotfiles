@@ -82,6 +82,11 @@ abbr gcan "git commit --amend --no-edit"
 abbr gp   "git push"
 abbr gpf  "git push --force"
 abbr gl   "git pull"
+abbr grr  "git rebase --committer-date-is-author-date -i --root"
+abbr gri  "git rebase --committer-date-is-author-date -i"
+abbr gra  "git rebase --abort"
+abbr grc  "git rebase --continue"
+abbr gret "git rebase --edit-todo"
 
 # Zig
 abbr zb "zig build --color on --error-style minimal -freference-trace=5"
