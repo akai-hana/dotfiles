@@ -91,7 +91,7 @@ abbr gret "git rebase --edit-todo"
 
 # Zig
 abbr zb "zig build --color on --error-style minimal -freference-trace=0"
-abbr zbd "zig build -Doptimize=Debug -freference-trace=20 --color on 2>&1 | sed -E '/failed command:/,/Build Summary:/d'"
+abbr zbd "zig build -Doptimize=Debug --color on --error-style minimal -freference-trace=0"
 
 abbr zv  "zig version"
 abbr zbr "zig build run"
