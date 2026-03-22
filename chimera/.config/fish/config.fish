@@ -90,7 +90,7 @@ abbr grc  "git rebase --continue"
 abbr gret "git rebase --edit-todo"
 
 # Zig
-abbr zb "zig build --color on --error-style minimal -freference-trace=0"
+abbr zb "zig build -Drelease=true --color on --error-style minimal -freference-trace=0"
 abbr zbd "zig build -Doptimize=Debug --color on --error-style minimal -freference-trace=0"
 
 abbr zv  "zig version"
