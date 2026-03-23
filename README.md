@@ -65,7 +65,7 @@ make install
 #### system
 
 + **OS/distro:** [Chimera Linux](https://chimera-linux.org/)
-+ **window manager:** dwm [(my custom build)](https://github.com/akai-hana/suckless/)
++ **window manager:** hana [(my own wm)](https://github.com/hana-wm/hana/)
 + **wallpaper:** upon boot, a randomly picked shader from [here](https://github.com/akai-hana/shader-wallpaper/tree/main/shadow/), using [this project](https://github.com/danielfvm/shadow/) along with the help of my [script utilities](https://github.com/akai-hana/shader-wallpaper/tree/main/shadow/scripts/)
 ---
 
@@ -105,6 +105,6 @@ make install
 
 <div align="center">
 
-made with ❤️ by akai
+made with <3 by akai
 
 </div>
