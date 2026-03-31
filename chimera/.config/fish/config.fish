@@ -93,7 +93,7 @@ abbr rngrep "grep -Rni"
 
 # Zig
 abbr zb "zig build -Drelease=true --color on --error-style minimal -freference-trace=0"
-abbr zbd "zig build -Doptimize=Debug --color on --error-style minimal -freference-trace=0"
+abbr zbd "zig build -Drelease=false --color on --error-style minimal -freference-trace=0"
 
 abbr zv  "zig version"
 abbr zbr "zig build run"
