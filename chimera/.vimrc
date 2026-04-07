@@ -4,6 +4,7 @@ syntax on
 set nomodeline
 set background=dark
 set nocompatible
+set shiftwidth=4
 
 set bs=2       " Allow backspacing over everything in insert mode
 set ai         " Always set auto-indenting on
