@@ -12,6 +12,8 @@ set -gx PATH $PATH $HOME/.local/bin
 
 alias sudo doas
 
+abbr cd- "cd -"
+
 ## package management (chimera/alpine)
 abbr get   "doas apk add"
 abbr seget "doas apk search"
