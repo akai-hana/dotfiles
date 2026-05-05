@@ -80,6 +80,7 @@ abbr symlinks "grep -i '\->'" # little hack: pipe eza into this to filter by sym
 abbr ga   "git add"
 abbr ga.  "git add ."
 abbr gc   "git commit"
+abbr gcl  "git clone"
 abbr gcm  "git commit -m"
 abbr gcam "git commit --amend -m"
 abbr gcan "git commit --amend --no-edit"
@@ -92,6 +93,9 @@ abbr gri  "git rebase --committer-date-is-author-date -i"
 abbr gra  "git rebase --abort"
 abbr grc  "git rebase --continue"
 abbr gret "git rebase --edit-todo"
+
+alias github "https://github.com"
+alias gitlab "https://gitlab.com"
 
 abbr rngrep "grep -Rni"
 
