@@ -21,7 +21,7 @@ doas mount /dev/nvme1n1p2 ~/mount &
 # dwm
 
 ## setup date and clock
-slstatus &
+#slstatus &
 
 # screen
 
