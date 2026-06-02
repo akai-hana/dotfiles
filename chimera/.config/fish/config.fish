@@ -10,8 +10,6 @@ set -gx PATH $PATH $HOME/.local/bin
 
 # system
 
-alias sudo doas
-
 abbr cd- "cd -"
 
 ## package management (chimera/alpine)
