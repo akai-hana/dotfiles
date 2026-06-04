@@ -78,7 +78,8 @@ Plug 'junegunn/vim-easy-align' " `vipga<symbol>` || `gaip<symbol>`
 " Plug 'wfxr/minimap.vim' " Cool minimap
 Plug 'preservim/nerdtree'
 
-Plug 'vimsence/vimsence' " discord RPC
+Plug 'vbe0201/vimdiscord' " discord RPC
+Plug 'Stoozy/vimcord'
 
 Plug 'gko/vim-coloresque' " ?
 
