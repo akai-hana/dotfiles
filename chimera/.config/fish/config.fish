@@ -8,6 +8,9 @@ set -gx PATH $PATH $HOME/.local/bin
 
 ### MY HORRENDOUS LIST OF ABBREVIATIONS ###  
 
+abbr rbonsai "distrobox enter aur -- rbonsai"
+abbr asciiquarium "distrobox enter aur -- asciiquarium"
+
 # system
 
 abbr cd- "cd -"

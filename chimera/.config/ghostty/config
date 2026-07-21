@@ -4,7 +4,7 @@ shell-integration = fish
 config-file = ~/.config/ghostty/colors
 
 font-family = FiraCode Nerd Font Ret
-font-size   = 13
+font-size   = 8
 
 alpha-blending = linear
 
