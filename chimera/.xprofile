@@ -81,3 +81,6 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 
 # TODO: move to dedicated pause/resume shader wallpaper script
 #renice -n -20 $(pgrep shader-fullscre) $(pgrep picom) &
+
+# high -> auto for better temps
+echo auto | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level
