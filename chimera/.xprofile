@@ -86,4 +86,4 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 echo auto | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level
 
 # insmod lenovolegion kernel drivers
-doas insmod ~/git/LenovoLegionLinux/kernel_module/legionlaptop.ko
+doas insmod ~/git/LenovoLegionLinux/kernel_module/legion-laptop.ko
