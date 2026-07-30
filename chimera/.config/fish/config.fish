@@ -139,3 +139,5 @@ abbr hanaconf "vim ~/.config/hana/config.toml"
 set -gx ZVM_INSTALL "$HOME/.zvm/self"
 set -gx PATH $PATH "$HOME/.zvm/bin"
 set -gx PATH $PATH "$ZVM_INSTALL/"
+source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
