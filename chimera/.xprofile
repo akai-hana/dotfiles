@@ -74,7 +74,7 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 ~/.local/bin/firefox-sync.sh xpmraevm.default-default &
 
 # turn on discord rpc
-~/eudaimonia/scripts/discord-rpc.sh &
+# ~/eudaimonia/scripts/discord-rpc.sh &
 
 # auto-sync eudaimonia
 ~/eudaimonia/push.sh &
