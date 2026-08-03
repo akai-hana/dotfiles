@@ -1,12 +1,12 @@
 {
 	"window-size": {
-		"width": 1297,
-		"height": 791
+		"width": 1277,
+		"height": 761
 	},
 	"window-maximized": false,
 	"window-position": {
-		"x": 0,
-		"y": 0
+		"x": 8,
+		"y": 8
 	},
 	"url": "https://music.youtube.com/watch?v=5WEB_uMqQyg",
 	"options": {
@@ -82,7 +82,7 @@
 	},
 	"__internal__": {
 		"migrations": {
-			"version": "3.11.0"
+			"version": "3.12.0"
 		}
 	}
 }
