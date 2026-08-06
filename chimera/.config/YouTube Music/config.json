@@ -8,7 +8,7 @@
 		"x": 8,
 		"y": 8
 	},
-	"url": "https://music.youtube.com/watch?v=5WEB_uMqQyg",
+	"url": "https://music.youtube.com/watch?v=9cziqfRHnCw&list=RDAMVMQnQa24tRQUs&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -77,6 +77,18 @@
 			"enabled": true
 		},
 		"skip-disliked-songs": {
+			"enabled": true
+		},
+		"performance-improvement": {
+			"enabled": false
+		},
+		"sponsorblock": {
+			"enabled": true
+		},
+		"quality-changer": {
+			"enabled": true
+		},
+		"do-not-track": {
 			"enabled": true
 		}
 	},
