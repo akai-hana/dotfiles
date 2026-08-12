@@ -47,7 +47,7 @@ $EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
 $EUDAIMONIA/scripts/cpu-performance.sh &
 
 ## set gpu to high (AMD only)
-echo high | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level &
+echo auto | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level &
 
 ## optimize PCI cycle/timings for latency
 $EUDAIMONIA/scripts/pci-latency.sh &
