@@ -2,8 +2,8 @@
 xrdb -merge ~/.xresources
 . ~/.xprofile &
 
-exec dbus-launch hana
-#exec dbus-launch dwm
+#exec dbus-launch hana
+exec dbus-launch dwm
 #exec dbus-launch --exit-with-session i3
 #exec dbus-launch --exit-with-session awesome
 #exec dbus-launch --exit-with-session bspwm
