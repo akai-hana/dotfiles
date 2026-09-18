@@ -26,7 +26,7 @@ doas mount /dev/nvme1n1p2 ~/mount &
 # screen
 
 ## brightness and color profile
-brightnessctl s 35% &
+brightnessctl s 75% &
 $EUDAIMONIA/lenovo-legion/argyll/bin/dispwin $EUDAIMONIA/lenovo-legion/Lenovo-Legion-7-16ARHA7-99th-optimal-color-profile.icm &
 
 ## randomized wallpaper from a selection (deprecated)
