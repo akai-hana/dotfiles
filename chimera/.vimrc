@@ -36,6 +36,9 @@ set autowrite  " Automatically save before commands like :next and :make
 set hidden     " Hide buffers when they are abandoned
 set mouse=a    " Enable mouse usage (all modes)
 
+" open vertical splits on the right
+set splitright
+
 " make colors coherent
 " (this setting only makes sense with my xresources color palette)
 set t_Co=16
@@ -82,6 +85,11 @@ Plug 'vimsence/vimsence'
 
 Plug 'gko/vim-coloresque' " ?
 
+" live GitHub-style markdown preview in a browser window, synced with your cursor
+" (downloads a prebuilt server on install; no Node.js needed; loaded eagerly so its
+" buffer-local commands always exist in markdown buffers)
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
+
 call plug#end()
 
 let mapleader = "\<Space>"
@@ -107,3 +115,39 @@ nmap ga <Plug>(EasyAlign)
 let g:minimap_auto_start = 1      " enable minimap
 let g:airline_theme = 'base16'    " Xresources
 let g:zig_fmt_autosave = 0        " no auto formatting on file save
+
+" ---------------------------------------------------------------------------
+" Markdown: live preview (markdown-preview.nvim)
+" ---------------------------------------------------------------------------
+
+" make sure *.md is always detected as markdown (older Vims guess modula2)
+augroup mdfiletype
+  autocmd!
+  autocmd BufNewFile,BufRead *.md set filetype=markdown
+augroup END
+
+" <Space>mp toggles the preview (markdown buffers only)
+augroup mdpreviewmap
+  autocmd!
+  autocmd FileType markdown nnoremap <buffer> <Leader>mp :MarkdownPreviewToggle<CR>
+augroup END
+
+let g:mkdp_auto_start = 0     " 1 = open the preview whenever you open a .md file
+let g:mkdp_auto_close = 1     " close the preview when you leave the markdown buffer
+let g:mkdp_refresh_slow = 0   " 0 = update as you type, 1 = only on save / leaving insert
+" let g:mkdp_theme = 'light'  " force 'light' or 'dark'; default follows your browser
+
+" Open the preview in a new Firefox window. dwm tiles it next to your terminal.
+" Note: Firefox blocks scripts from closing windows they didn't open, so
+" g:mkdp_auto_close may leave the window open (close it with Mod+Shift+C, or set
+" dom.allow_scripts_to_close_windows = true in about:config).
+function! OpenMarkdownPreview(url) abort
+  for l:b in ['firefox', 'firefox-esr']
+    if executable(l:b)
+      call system(l:b . ' --new-window ' . shellescape(a:url) . ' >/dev/null 2>&1 &')
+      return
+    endif
+  endfor
+  call system('xdg-open ' . shellescape(a:url) . ' >/dev/null 2>&1 &')
+endfunction
+let g:mkdp_browserfunc = 'OpenMarkdownPreview'
