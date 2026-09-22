@@ -10,7 +10,7 @@ export XCURSOR_PATH=~/.local/share/icons:~/.icons:/usr/share/icons
 doas dhcpcd &
 
 # swap capslock/esc and Lalt/Lsuper
-setxkbmap -layout us -option caps:swapescape -option altwin:swap_lalt_lwin &
+doas keyd & # not setxkbmap because keyd has greater support
 
 # make keyboard repeat rates faster so holding keys is not slow af
 xset r rate 200 40 &
