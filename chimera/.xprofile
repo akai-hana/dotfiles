@@ -9,12 +9,6 @@ export XCURSOR_PATH=~/.local/share/icons:~/.icons:/usr/share/icons
 
 doas dhcpcd &
 
-# swap capslock/esc and Lalt/Lsuper
-doas keyd & # not setxkbmap because keyd has greater support
-
-# make keyboard repeat rates faster so holding keys is not slow af
-xset r rate 200 40 &
-
 # setup media storage
 doas mount /dev/nvme1n1p2 ~/mount &
 
@@ -86,4 +80,10 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 # echo auto | doas tee /sys/class/drm/card0/device/power_dpm_force_performance_level
 
 # insmod lenovolegion kernel drivers
-doas insmod ~/git/LenovoLegionLinux/kernel_module/legion-laptop.ko
+doas insmod ~/git/LenovoLegionLinux/kernel_module/legion-laptop.ko &
+
+# swap capslock/esc and Lalt/Lsuper
+doas keyd # not setxkbmap because keyd has greater support
+
+# make keyboard repeat rates faster so holding keys is not slow af
+xset r rate 200 40
