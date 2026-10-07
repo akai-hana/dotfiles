@@ -5,10 +5,10 @@
 	},
 	"window-maximized": false,
 	"window-position": {
-		"x": 8,
+		"x": -15239,
 		"y": 8
 	},
-	"url": "https://music.youtube.com/watch?v=kFR5l6fVxko&list=RDAMVMd5wAvJMFTc0&index=0",
+	"url": "https://music.youtube.com/watch?v=2nMfi6ai0nQ&list=RDAMVMd5wAvJMFTc0&index=0",
 	"options": {
 		"tray": false,
 		"appVisible": true,
@@ -43,7 +43,7 @@
 				"volumeUp": "",
 				"volumeDown": ""
 			},
-			"savedVolume": 94
+			"savedVolume": 90
 		},
 		"discord": {
 			"listenAlong": true,
