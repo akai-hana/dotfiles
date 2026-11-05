@@ -83,7 +83,8 @@ doas sh -c 'echo 2048 > /proc/sys/dev/hpet/max-user-freq' &
 doas insmod ~/git/LenovoLegionLinux/kernel_module/legion-laptop.ko &
 
 # swap capslock/esc and Lalt/Lsuper
-doas keyd # not setxkbmap because keyd has greater support
+doas keyd & # not setxkbmap because keyd has greater support
 
 # make keyboard repeat rates faster so holding keys is not slow af
+sleep 5
 xset r rate 200 40
