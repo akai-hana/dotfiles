@@ -1,3 +1,9 @@
+# Managed by nix-installer-chimera.
+# Remove with: sh install.sh --uninstall
 type = process
-command = /nix/var/nix/profiles/default/bin/nix-daemon
-restart = true
+command = /nix/var/nix/profiles/default/bin/nix-daemon --daemon
+smooth-recovery = true
+depends-on: local.target
+log-type = buffer
+# Matches LimitNOFILE in the official systemd unit; large builds need it.
+rlimit-nofile = 1048576
