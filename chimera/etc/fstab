@@ -1,0 +1,4 @@
+# See fstab(5).
+#
+# <file system> <dir> <type> <options> <dump> <pass>
+/etc /var/lib/flatpak/runtime-host-etc none bind,ro 0 0

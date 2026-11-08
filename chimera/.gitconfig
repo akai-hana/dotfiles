@@ -1,0 +1,43 @@
+[user]
+	email = akaihanatsundeee@proton.me
+	name = akai-hana
+	mail = akaihanatsundeee@proton.me
+	emain = akaihanatsundeee@proton.me
+[init]
+	defaultBranch = main
+[credential]
+	helper = store
+[push]
+	autoSetupRemote = true
+[safe]
+	directory = /home/akai/eudaimonia
+	directory = /home/akai/eudaimonia
+	directory = /home/akai/eudaimonia
+	directory = /home/akai/eudaimonia
+	directory = /home/akai/eudaimonia
+	directory = /home/akai/eudaimonia
+	directory = /home/akai/eudaimonia
+	directory = /home/akai/git/hana-full-history-bak
+	directory = /home/akai/git/instagramapp-bak
+	directory = /home/akai/git/layout-opencode-investigation
+	directory = /home/akai/git/oxeylyzer
+	directory = /usr/src/ltkg-7.2.15
+	directory = /home/akai/eudaimonia/hana
+	directory = /home/akai/eudaimonia/shader-wallpaper
+	directory = /home/akai/eudaimonia/milk-cursor
+	directory = /home/akai/eudaimonia/dotfiles
+[pull]
+	rebase = true
+[core]
+	editor = vim
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential

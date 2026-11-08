@@ -92,6 +92,8 @@ uninstall:
 	@$(RUN) xstow --target=/usr --delete $(DOTFILES)/usr --verbose=$(VERBOSE_LEVEL)
 	@printf "$(CYAN)-> Unstowing $(DOTFILES) from /etc$(RESET)\n"
 	@$(RUN) xstow --target=/etc --delete $(DOTFILES)/etc --verbose=$(VERBOSE_LEVEL)
+	@printf "$(CYAN)-> Unstowing $(DOTFILES) from /dev$(RESET)\n"
+	@$(RUN) xstow --target=/dev --delete $(DOTFILES)/dev --verbose=$(VERBOSE_LEVEL)
 
 # dry-run (adding/testing xstow before committing)
 test:
@@ -102,3 +104,5 @@ test:
 	@$(RUN) xstow --target=/usr --no $(DOTFILES)/usr --verbose=$(VERBOSE_LEVEL)
 	@printf "$(CYAN)-> Dry-run stowing $(DOTFILES) onto /etc$(RESET)\n"
 	@$(RUN) xstow --target=/etc --no $(DOTFILES)/etc --verbose=$(VERBOSE_LEVEL)
+	@printf "$(CYAN)-> Dry-run stowing $(DOTFILES) onto /dev$(RESET)\n"
+	@$(RUN) xstow --target=/dev --no $(DOTFILES)/dev --verbose=$(VERBOSE_LEVEL)

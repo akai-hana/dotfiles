@@ -1,0 +1,70 @@
+CustomTemp = []
+Graph = []
+Flat = []
+Linear = []
+Target = []
+
+[[Control]]
+name = "pwm1 amdgpu-pci-0300"
+id = "pwm1-amdgpu-pci-0300-pwm1"
+active = true
+
+[[Fan]]
+name = "fan1 amdgpu-pci-0300"
+id = "fan1-amdgpu-pci-0300-fan1_input"
+
+[[Temp]]
+name = "temp1 spd5118-i2c-1-51"
+id = "temp1-spd5118-i2c-1-51-temp1_input"
+
+[[Temp]]
+name = "temp1 r8169_0_600:00-mdio-0"
+id = "temp1-r8169_0_600:00-mdio-0-temp1_input"
+
+[[Temp]]
+name = "edge amdgpu-pci-0300"
+id = "edge-amdgpu-pci-0300-temp1_input"
+
+[[Temp]]
+name = "junction amdgpu-pci-0300"
+id = "junction-amdgpu-pci-0300-temp2_input"
+
+[[Temp]]
+name = "mem amdgpu-pci-0300"
+id = "mem-amdgpu-pci-0300-temp3_input"
+
+[[Temp]]
+name = "Tctl k10temp-pci-00c3"
+id = "Tctl-k10temp-pci-00c3-temp1_input"
+
+[[Temp]]
+name = "Composite nvme-pci-0700"
+id = "Composite-nvme-pci-0700-temp1_input"
+
+[[Temp]]
+name = "Sensor 1 nvme-pci-0700"
+id = "Sensor 1-nvme-pci-0700-temp2_input"
+
+[[Temp]]
+name = "Sensor 2 nvme-pci-0700"
+id = "Sensor 2-nvme-pci-0700-temp3_input"
+
+[[Temp]]
+name = "temp1 mt7921_phy0-pci-0500"
+id = "temp1-mt7921_phy0-pci-0500-temp1_input"
+
+[[Temp]]
+name = "temp1 spd5118-i2c-1-50"
+id = "temp1-spd5118-i2c-1-50-temp1_input"
+
+[[Temp]]
+name = "edge amdgpu-pci-3700"
+id = "edge-amdgpu-pci-3700-temp1_input"
+
+[[Temp]]
+name = "temp1 acpitz-acpi-0"
+id = "temp1-acpitz-acpi-0-temp1_input"
+
+[[Temp]]
+name = "Composite nvme-pci-0400"
+id = "Composite-nvme-pci-0400-temp1_input"

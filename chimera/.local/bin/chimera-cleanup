@@ -1,0 +1,527 @@
+#!/usr/bin/env bash
+#
+# chimera-cleanup - periodic cache/temp/runtime/trash cleanup for Chimera Linux
+#
+# Defaults to a DRY RUN. Nothing is deleted unless --apply is given.
+#
+# Examples:
+#   chimera-cleanup                     # show what would be removed
+#   chimera-cleanup --apply             # remove safe caches/temp/trash
+#   chimera-cleanup --apply --yes       # non-interactive safe cleanup
+#   chimera-cleanup --apply --aggressive --yes
+#   chimera-cleanup --only docker,nix --apply
+#   chimera-cleanup --skip docker,podman --apply
+#
+# Categories: apk user-cache tmp var-tmp trash docker podman flatpak nix logs
+#
+set -uo pipefail
+
+VERSION="1.0.0"
+PROG="${0##*/}"
+
+DRY_RUN=1
+ASSUME_YES=0
+AGGRESSIVE=0
+TMP_DAYS="${TMP_DAYS:-7}"
+VARTMP_DAYS="${VARTMP_DAYS:-30}"
+LOG_DAYS="${LOG_DAYS:-30}"
+ONLY=""
+SKIP=""
+
+CATEGORIES=(apk user-cache tmp var-tmp trash docker podman flatpak nix logs)
+
+# ---------------------------------------------------------------------------
+# helpers
+# ---------------------------------------------------------------------------
+
+have() { command -v "$1" >/dev/null 2>&1; }
+
+as_root() {
+    if [ "$EUID" -eq 0 ]; then
+        "$@"
+    elif have doas; then
+        doas "$@"
+    elif have sudo; then
+        sudo "$@"
+    else
+        msg "  SKIP (root required): $*"
+        return 1
+    fi
+}
+
+run_user() {
+    if [ "$EUID" -eq "$TARGET_UID" ]; then
+        "$@"
+    elif [ "$EUID" -eq 0 ]; then
+        if have runuser; then
+            runuser -u "$TARGET_USER" -- "$@"
+        elif have su; then
+            su -s /bin/sh "$TARGET_USER" -c "$(printf '%q ' "$@")"
+        elif have doas; then
+            doas -u "$TARGET_USER" "$@"
+        else
+            "$@"
+        fi
+    else
+        "$@"
+    fi
+}
+
+human() {
+    local b="${1:-0}"
+    awk -v b="$b" 'BEGIN {
+        split("B KiB MiB GiB TiB PiB", u, " ");
+        i = 1;
+        while (b >= 1024 && i < 6) { b /= 1024; i++ }
+        if (i == 1) printf "%.0f %s\n", b, u[i];
+        else printf "%.1f %s\n", b, u[i];
+    }'
+}
+
+path_size_bytes() {
+    local p="$1"
+    [ -e "$p" ] || { printf '0'; return; }
+    du -sk -- "$p" 2>/dev/null | awk 'NR==1 {print $1 * 1024}'
+}
+
+disk_report() {
+    df -h / /home/akai/mount 2>/dev/null
+}
+
+msg() {
+    printf '%s\n' "$*"
+    [ -n "${LOGFILE:-}" ] && printf '%s %s\n' "$(date '+%F %T')" "$*" >>"$LOGFILE" 2>/dev/null
+}
+
+die() {
+    printf '%s: %s\n' "$PROG" "$*" >&2
+    exit 1
+}
+
+usage() {
+    cat <<EOF
+$PROG $VERSION - Chimera Linux cleanup
+
+Usage: $PROG [options]
+
+Default is a dry run: it only reports what would be removed.
+
+  -a, --apply          Actually delete files (otherwise dry run)
+  -y, --yes            Do not ask for confirmation with --apply
+  -n, --dry-run        Force dry run (default)
+      --aggressive     Also purge all APK cache, all unused Docker images and
+                       volumes, podman storage if podman is unusable, cargo/npm
+                       caches, /tmp/opencode, and run 'nix store optimise'
+      --only LIST      Comma-separated categories to run
+      --skip LIST      Comma-separated categories to skip
+      --tmp-days N     /tmp entries older than N days (default: $TMP_DAYS)
+      --vartmp-days N  /var/tmp entries older than N days (default: $VARTMP_DAYS)
+      --log-days N     Rotated logs older than N days (default: $LOG_DAYS)
+      --list           List categories
+  -h, --help           Show this help
+
+Categories: ${CATEGORIES[*]}
+
+Examples:
+  $PROG
+  $PROG --apply
+  $PROG --apply --yes --aggressive
+  $PROG --only apk,tmp,docker --apply
+  $PROG --skip docker,podman --apply
+EOF
+}
+
+should_run() {
+    local c="$1"
+    if [ -n "$ONLY" ]; then
+        case ",$ONLY," in *",$c,"*) ;; *) return 1 ;; esac
+    fi
+    if [ -n "$SKIP" ]; then
+        case ",$SKIP," in *",$c,"*) return 1 ;; esac
+    fi
+    return 0
+}
+
+# clean_paths LABEL MODE ROOT|USER PATH...
+# Reports size, lists the 10 largest entries, and deletes them unless dry run.
+clean_paths() {
+    local label="$1" mode="$2"
+    shift 2
+    [ "$#" -gt 0 ] || return 0
+
+    local total=0 p b s
+    for p in "$@"; do
+        s=$(path_size_bytes "$p")
+        total=$((total + ${s:-0}))
+    done
+
+    msg "  $label: $(human "$total") across $# top-level entries"
+    {
+        for p in "$@"; do
+            printf '%s\t%s\n' "$(path_size_bytes "$p")" "$p"
+        done
+    } | sort -rn | head -10 | while IFS=$'\t' read -r b p; do
+        msg "    $(human "$b")  $p"
+    done
+
+    if [ "$DRY_RUN" -eq 0 ]; then
+        if [ "$mode" = root ]; then
+            as_root rm -rf -- "$@" 2>/dev/null || {
+                for p in "$@"; do
+                    as_root rm -rf -- "$p" 2>/dev/null || msg "    failed: $p"
+                done
+            }
+        else
+            rm -rf -- "$@" 2>/dev/null || {
+                for p in "$@"; do
+                    rm -rf -- "$p" 2>/dev/null || msg "    failed: $p"
+                done
+            }
+        fi
+    fi
+}
+
+remove_path_report() {
+    local p="$1" label="$2"
+    [ -e "$p" ] || return 0
+    msg "  $label: $(human "$(path_size_bytes "$p")")"
+    if [ "$DRY_RUN" -eq 0 ]; then
+        rm -rf -- "$p" 2>/dev/null || msg "    failed: $p"
+    fi
+}
+
+# ---------------------------------------------------------------------------
+# categories
+# ---------------------------------------------------------------------------
+
+clean_apk() {
+    have apk || { msg "  apk not found"; return; }
+
+    local dir=/var/cache/apk
+    if [ -d "$dir" ]; then
+        local n
+        n=$(find "$dir" -maxdepth 1 -type f -name '*.apk' 2>/dev/null | wc -l)
+        msg "  cache: $(human "$(path_size_bytes "$dir")") ($n package files)"
+        if [ "$DRY_RUN" -eq 0 ]; then
+            as_root apk cache clean || msg "  'apk cache clean' failed"
+            if [ "$AGGRESSIVE" -eq 1 ]; then
+                as_root apk cache purge || msg "  'apk cache purge' failed"
+            fi
+        else
+            if [ "$AGGRESSIVE" -eq 1 ]; then
+                msg "  would run: apk cache clean && apk cache purge"
+            else
+                msg "  would run: apk cache clean (keeps current packages)"
+            fi
+        fi
+    fi
+
+    local pending
+    pending=$(find /etc -maxdepth 3 -name '*.apk-new' 2>/dev/null)
+    if [ -n "$pending" ]; then
+        msg "  pending config updates (not removed automatically):"
+        printf '%s\n' "$pending" | sed 's/^/    /'
+    fi
+}
+
+clean_user_cache() {
+    local cache="${XDG_CACHE_HOME:-$TARGET_HOME/.cache}"
+    msg "  user: $TARGET_USER ($TARGET_HOME)"
+
+    local name
+    local -a common=(yay paru pip uv npm zig huggingface mesa_shader_cache thumbnails fontconfig nix go-build)
+    for name in "${common[@]}"; do
+        remove_path_report "$cache/$name" "~/.cache/$name"
+    done
+
+    remove_path_report "$TARGET_HOME/.npm/_cacache" "~/.npm/_cacache"
+
+    if [ "$AGGRESSIVE" -eq 1 ]; then
+        remove_path_report "$cache/Cypress" "~/.cache/Cypress"
+        remove_path_report "$TARGET_HOME/.cargo/registry/cache" "~/.cargo/registry/cache"
+        remove_path_report "$TARGET_HOME/.cargo/git/db" "~/.cargo/git/db"
+    fi
+}
+
+clean_tmp() {
+    [ -d /tmp ] || return
+
+    local -a entries=()
+    local p skip
+    while IFS= read -r -d '' p; do
+        skip=0
+        case "$p" in
+            /tmp/.X11-unix|/tmp/.ICE-unix|/tmp/.font-unix|/tmp/.XIM-unix) skip=1 ;;
+            /tmp/.mount_ghost*) skip=1 ;;
+        esac
+        if [ "$AGGRESSIVE" -eq 0 ] && [ "$p" = "/tmp/opencode" ]; then
+            skip=1
+        fi
+        # Never delete a directory that contains the current working directory.
+        case "$PWD/" in
+            "$p"/*) skip=1 ;;
+        esac
+        [ "$skip" -eq 1 ] && continue
+        entries+=("$p")
+    done < <(find /tmp -xdev -mindepth 1 -maxdepth 1 -mtime +"$TMP_DAYS" -print0 2>/dev/null)
+
+    if [ "$AGGRESSIVE" -eq 0 ]; then
+        msg "  ignoring /tmp/opencode (use --aggressive to include it)"
+    fi
+
+    clean_paths "entries older than ${TMP_DAYS}d in /tmp" root "${entries[@]}"
+}
+
+clean_vartmp() {
+    [ -d /var/tmp ] || return
+
+    local -a entries=()
+    local p
+    while IFS= read -r -d '' p; do
+        case "$p" in
+            /var/tmp/vi.recover) continue ;;
+        esac
+        entries+=("$p")
+    done < <(find /var/tmp -xdev -mindepth 1 -maxdepth 1 -mtime +"$VARTMP_DAYS" -print0 2>/dev/null)
+    clean_paths "entries older than ${VARTMP_DAYS}d in /var/tmp" root "${entries[@]}"
+
+    if [ -d /var/tmp/vi.recover ]; then
+        entries=()
+        while IFS= read -r -d '' p; do
+            entries+=("$p")
+        done < <(find /var/tmp/vi.recover -xdev -mindepth 1 -maxdepth 1 -mtime +"$VARTMP_DAYS" -print0 2>/dev/null)
+        clean_paths "stale vim recovery files" root "${entries[@]}"
+    fi
+}
+
+clean_trash() {
+    local -a entries=()
+    local p sub
+
+    for sub in files info; do
+        p="$TARGET_HOME/.local/share/Trash/$sub"
+        [ -d "$p" ] || continue
+        entries=()
+        while IFS= read -r -d '' p; do
+            entries+=("$p")
+        done < <(find "$p" -xdev -mindepth 1 -maxdepth 1 -print0 2>/dev/null)
+        clean_paths "~/.local/share/Trash/$sub" user "${entries[@]}"
+    done
+
+    # Trash directories on other mounted filesystems (e.g. a btrfs data disk)
+    while IFS= read -r -d '' p; do
+        entries=()
+        while IFS= read -r -d '' sub; do
+            entries+=("$sub")
+        done < <(find "$p" -xdev -mindepth 1 -maxdepth 1 -print0 2>/dev/null)
+        clean_paths "$p" user "${entries[@]}"
+    done < <(find /home /mnt /media -maxdepth 4 -type d -name '.Trash-*' -print0 2>/dev/null)
+}
+
+clean_docker() {
+    have docker || { msg "  docker not installed"; return; }
+    if ! docker info >/dev/null 2>&1; then
+        msg "  docker daemon not running/accessible; skip"
+        return
+    fi
+
+    msg "  current usage:"
+    docker system df 2>/dev/null | sed 's/^/    /'
+
+    local stopped dangling
+    stopped=$(docker ps -aq --filter status=exited --filter status=created 2>/dev/null | wc -l)
+    dangling=$(docker images -f dangling=true -q 2>/dev/null | wc -l)
+    msg "  stopped/created containers: $stopped; dangling images: $dangling"
+
+    if [ "$DRY_RUN" -eq 0 ]; then
+        as_root docker container prune -f
+        as_root docker image prune -f
+        as_root docker builder prune -f 2>/dev/null || true
+        if [ "$AGGRESSIVE" -eq 1 ]; then
+            as_root docker image prune -a -f
+            as_root docker volume prune -f
+        fi
+    else
+        msg "  would prune stopped containers, dangling images, build cache"
+        [ "$AGGRESSIVE" -eq 1 ] && msg "  would ALSO prune all unused images and volumes"
+    fi
+}
+
+clean_podman() {
+    have podman || { msg "  podman not installed"; return; }
+
+    if run_user podman info >/dev/null 2>&1; then
+        if [ "$DRY_RUN" -eq 0 ]; then
+            run_user podman system prune -f
+            [ "$AGGRESSIVE" -eq 1 ] && run_user podman system prune -a -f --volumes
+        else
+            msg "  would run: podman system prune -f"
+            [ "$AGGRESSIVE" -eq 1 ] && msg "  would also remove all unused podman images and volumes"
+        fi
+        return
+    fi
+
+    msg "  podman is not usable here (reported: $(run_user podman info 2>&1 | tail -1))"
+    local store="$TARGET_HOME/.local/share/containers"
+    if [ -d "$store" ]; then
+        msg "  rootless podman storage: $(human "$(path_size_bytes "$store")")"
+        if [ "$AGGRESSIVE" -eq 1 ]; then
+            clean_paths "rootless podman storage (podman unusable)" user "$store"
+        else
+            msg "  use --aggressive to delete it (DESTROYS podman images/containers)"
+        fi
+    fi
+}
+
+clean_flatpak() {
+    have flatpak || { msg "  flatpak not installed"; return; }
+
+    if [ "$DRY_RUN" -eq 0 ]; then
+        as_root flatpak uninstall --unused -y || true
+        run_user flatpak --user uninstall --unused -y 2>/dev/null || true
+    else
+        msg "  would remove unused system and user flatpak runtimes"
+        msg "  (flatpak has no dry-run for --unused; run with --apply to execute)"
+    fi
+}
+
+clean_nix() {
+    [ -d /nix/store ] || return
+    have nix || { msg "  nix not in PATH"; return; }
+
+    msg "  store paths: $(ls /nix/store 2>/dev/null | wc -l)"
+
+    local gc
+    gc=$(command -v nix-collect-garbage 2>/dev/null || true)
+    [ -n "$gc" ] || gc=/nix/var/nix/profiles/default/bin/nix-collect-garbage
+
+    if [ "$DRY_RUN" -eq 0 ]; then
+        as_root env HOME=/root "$gc" -d || msg "  root nix GC failed"
+        if [ -x "$gc" ]; then
+            run_user env HOME="$TARGET_HOME" "$gc" -d 2>/dev/null || true
+        fi
+        if [ "$AGGRESSIVE" -eq 1 ]; then
+            as_root nix store optimise 2>/dev/null || true
+        fi
+    else
+        msg "  would run: nix-collect-garbage -d (root and $TARGET_USER)"
+        [ "$AGGRESSIVE" -eq 1 ] && msg "  would also run: nix store optimise"
+    fi
+}
+
+clean_logs() {
+    [ -d /var/log ] || return
+
+    local -a entries=()
+    local p
+    while IFS= read -r -d '' p; do
+        entries+=("$p")
+    done < <(find /var/log -xdev -type f \
+        \( -name '*.gz' -o -name '*.old' -o -name '*.1' -o -name '*.2' \
+           -o -name '*.3' -o -name '*.4' -o -name '*.5' \) \
+        -mtime +"$LOG_DAYS" -print0 2>/dev/null)
+
+    clean_paths "rotated logs older than ${LOG_DAYS}d" root "${entries[@]}"
+}
+
+# ---------------------------------------------------------------------------
+# argument parsing
+# ---------------------------------------------------------------------------
+
+while [ "$#" -gt 0 ]; do
+    case "$1" in
+        -a|--apply)       DRY_RUN=0 ;;
+        -n|--dry-run)     DRY_RUN=1 ;;
+        -y|--yes)         ASSUME_YES=1 ;;
+        --aggressive)     AGGRESSIVE=1 ;;
+        --only)           ONLY="${2:-}"; shift ;;
+        --only=*)         ONLY="${1#*=}" ;;
+        --skip)           SKIP="${2:-}"; shift ;;
+        --skip=*)         SKIP="${1#*=}" ;;
+        --tmp-days)       TMP_DAYS="${2:-}"; shift ;;
+        --vartmp-days)    VARTMP_DAYS="${2:-}"; shift ;;
+        --log-days)       LOG_DAYS="${2:-}"; shift ;;
+        --list)           printf '%s\n' "${CATEGORIES[@]}"; exit 0 ;;
+        -h|--help)        usage; exit 0 ;;
+        *)                die "unknown option: $1 (try --help)" ;;
+    esac
+    shift
+done
+
+case "$TMP_DAYS$VARTMP_DAYS$LOG_DAYS" in
+    *[!0-9]*) die "day values must be integers" ;;
+esac
+
+# ---------------------------------------------------------------------------
+# setup
+# ---------------------------------------------------------------------------
+
+if [ "$EUID" -eq 0 ]; then
+    TARGET_USER="${DOAS_USER:-${SUDO_USER:-}}"
+    if [ -z "$TARGET_USER" ] || [ "$TARGET_USER" = "root" ]; then
+        TARGET_USER=$(getent passwd 2>/dev/null | awk -F: '$3 >= 1000 && $3 < 65534 {print $1; exit}')
+    fi
+    [ -n "$TARGET_USER" ] || TARGET_USER=root
+else
+    TARGET_USER=$(id -un)
+fi
+
+TARGET_UID=$(id -u "$TARGET_USER" 2>/dev/null || echo 0)
+TARGET_HOME=$(getent passwd "$TARGET_USER" 2>/dev/null | awk -F: '{print $6}')
+[ -n "$TARGET_HOME" ] || TARGET_HOME="${HOME:-/root}"
+
+if [ "$EUID" -eq 0 ]; then
+    LOGFILE=/var/log/chimera-cleanup.log
+else
+    LOGFILE="$TARGET_HOME/.local/state/chimera-cleanup.log"
+fi
+mkdir -p "$(dirname "$LOGFILE")" 2>/dev/null || LOGFILE=/dev/null
+
+msg "=================================================================="
+msg "$PROG $VERSION  $(date '+%F %T')"
+msg "mode: $([ "$DRY_RUN" -eq 1 ] && echo 'DRY RUN' || echo 'APPLY')  aggressive: $AGGRESSIVE  user: $TARGET_USER"
+msg "------------------------------------------------------------------"
+msg "Disk before:"
+disk_report | sed 's/^/  /'
+msg "------------------------------------------------------------------"
+
+if [ "$DRY_RUN" -eq 0 ] && [ "$ASSUME_YES" -eq 0 ]; then
+    printf 'This will delete caches, temp files, trash, stopped containers and unused runtimes.\n'
+    printf 'Continue? [y/N] '
+    read -r answer
+    case "$answer" in
+        y|Y|yes|YES) ;;
+        *) msg "Aborted."; exit 0 ;;
+    esac
+fi
+
+for category in "${CATEGORIES[@]}"; do
+    should_run "$category" || continue
+    msg "==> $category"
+    case "$category" in
+        apk)        clean_apk ;;
+        user-cache) clean_user_cache ;;
+        tmp)        clean_tmp ;;
+        var-tmp)    clean_vartmp ;;
+        trash)      clean_trash ;;
+        docker)     clean_docker ;;
+        podman)     clean_podman ;;
+        flatpak)    clean_flatpak ;;
+        nix)        clean_nix ;;
+        logs)       clean_logs ;;
+        *)          msg "  unknown category: $category" ;;
+    esac
+done
+
+msg "------------------------------------------------------------------"
+msg "Disk after:"
+disk_report | sed 's/^/  /'
+msg "=================================================================="
+msg "Log: $LOGFILE"
+msg ""
+msg "Not touched automatically (review manually if you need space):"
+for p in /usr/src /usr/local/lib/ollama "$TARGET_HOME/Downloads" "$TARGET_HOME/.local/share/Steam"; do
+    [ -e "$p" ] && msg "  $(human "$(path_size_bytes "$p")")  $p"
+done
+msg "  Old kernels: check /boot, /lib/modules, /usr/src and your bootloader."
+msg "  ZFS: 'zpool trim rpool', snapshots, and 'zfs set atime=off rpool/ROOT/chimera'."

@@ -1,0 +1,6 @@
+theme = "HighContrastDark"
+update_delay = 100
+current_config = "test"
+start_at_login = false
+inactive = false
+start_minimized = false

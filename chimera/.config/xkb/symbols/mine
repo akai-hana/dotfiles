@@ -1,0 +1,46 @@
+// cfgE layout — results/LAYOUT.md
+// top:  ; a i o j  v l n r w
+// home: h f p e y  g t c m s
+// bot:  b x q u z  k d , . /
+partial alphanumeric_keys
+xkb_symbols "basic" {
+    name[Group1] = "cfgE";
+
+    include "us(basic)"
+
+    key <AD01> { [ semicolon,   colon     ] };
+    key <AD02> { [ a,           A         ] };
+    key <AD03> { [ i,           I         ] };
+    key <AD04> { [ o,           O         ] };
+    key <AD05> { [ j,           J         ] };
+    key <AD06> { [ v,           V         ] };
+    key <AD07> { [ l,           L         ] };
+    key <AD08> { [ n,           N         ] };
+    key <AD09> { [ r,           R         ] };
+    key <AD10> { [ w,           W         ] };
+
+    key <AC01> { [ h,           H         ] };
+    key <AC02> { [ f,           F         ] };
+    key <AC03> { [ p,           P         ] };
+    key <AC04> { [ e,           E         ] };
+    key <AC05> { [ y,           Y         ] };
+    key <AC06> { [ g,           G         ] };
+    key <AC07> { [ t,           T         ] };
+    key <AC08> { [ c,           C         ] };
+    key <AC09> { [ m,           M         ] };
+    key <AC10> { [ s,           S         ] };
+
+    key <AB01> { [ b,           B         ] };
+    key <AB02> { [ x,           X         ] };
+    key <AB03> { [ q,           Q         ] };
+    key <AB04> { [ u,           U         ] };
+    key <AB05> { [ z,           Z         ] };
+    key <AB06> { [ k,           K         ] };
+    key <AB07> { [ d,           D         ] };
+    key <AB08> { [ comma,       less      ] };
+    key <AB09> { [ period,      greater   ] };
+    key <AB10> { [ slash,       question  ] };
+
+    key <AC11> { [ apostrophe,  quotedbl  ] };
+    key <LSGT> { [ apostrophe,  quotedbl  ] };
+};

@@ -1,15 +1,14 @@
 # akai's fish config! :>
 # fastfetch
 
+alias sudo "doas"
+
 fish_vi_key_bindings
 
 set -gx PATH $PATH $HOME/.cargo/bin
 set -gx PATH $PATH $HOME/.local/bin
 
 ### MY HORRENDOUS LIST OF ABBREVIATIONS ###  
-
-abbr rbonsai "distrobox enter aur -- rbonsai"
-abbr asciiquarium "distrobox enter aur -- asciiquarium"
 
 # system
 
@@ -35,8 +34,10 @@ abbr sx "startx"
 abbr d  "cd"
 abbr q  "exit"
 abbr ff "fastfetch"
-abbr us "setxkbmap -layout us -option caps:swapescape -option altwin:swap_lalt_lwin"
-abbr es "setxkbmap -layout es -option caps:swapescape -option altwin:swap_lalt_lwin"
+# abbr us "setxkbmap -layout us -option caps:swapescape -option altwin:swap_lalt_lwin"
+# abbr es "setxkbmap -layout es -option caps:swapescape -option altwin:swap_lalt_lwin"
+ abbr us "setxkbmap -layout us -option"
+ abbr es "setxkbmap -layout es -option"
 
 ## overrides
 abbr mkdir "mkdir -p"
@@ -64,7 +65,6 @@ set -g EZA_SIMPLE "$EZA_FULL --no-permissions --no-user --no-time --no-filesize"
 alias e  "$EZA_SIMPLE"
 alias fe "$EZA_FULL"
 
-alias ls  "$EZA_SIMPLE"
 alias fls "$EZA_FULL"
 
 alias l   "$EZA_SIMPLE -l"
@@ -87,8 +87,9 @@ abbr gcam "git commit --amend -m"
 abbr gcan "git commit --amend --no-edit"
 abbr gp   "git push"
 abbr gpo  "git push origin"
-abbr gpod "git push origin --delete"
+abbr gpdo "git push --delete origin"
 abbr gpf  "git push --force"
+abbr gpfl "git push --force-with-lease"
 abbr gpof "git push --origin main --force"
 abbr gl   "git pull"
 abbr grr  "git rebase --committer-date-is-author-date -i --root"
@@ -103,6 +104,8 @@ abbr gchb "git checkout -b"
 abbr gbd  "git branch -d"
 abbr gbm  "git branch -m"
 abbr gcfd "git clean -fd"
+abbr gf   "git fetch"
+abbr gfo  "git fetch origin"
 abbr gfp  "git fetch --prune"
 abbr grir "git rebase -i --root"
 abbr -a gmm "set -l b (git branch --show-current); git push origin \$b; git checkout main; git merge \$b; git push origin main; git push origin --delete \$b; git branch -d \$b"
@@ -113,8 +116,11 @@ alias gitlab "https://gitlab.com"
 abbr rngrep "grep -Rni"
 
 # Zig
-abbr zb "zig build -Drelease=true --color on --error-style minimal -freference-trace=0"
-abbr zbd "zig build -Drelease=false --color on --error-style minimal -freference-trace=0"
+# abbr zb "zig build -Drelease=true --color on --error-style minimal -freference-trace=0"
+# abbr zbd "zig build -Drelease=false --color on --error-style minimal -freference-trace=0"
+
+abbr zb "zig build -Doptimize=ReleaseFast"
+abbr zbd "zig build"
 
 abbr zv  "zig version"
 abbr zbr "zig build run"
@@ -134,10 +140,28 @@ abbr fishconf "vim ~/.config/fish/config.fish"
 abbr dwmconf  "vim ~/eudaimonia/suckless/dwm-6.4/config.h"
 abbr ghosconf "vim ~/.config/ghostty/config"
 abbr hanaconf "vim ~/.config/hana/config.toml"
+abbr hanabinds "vim ~/.config/hana/binds.toml"
+abbr hanakai "vim ~/.config/hana/themes/akai.toml"
 
 # ZVM
 set -gx ZVM_INSTALL "$HOME/.zvm/self"
 set -gx PATH $PATH "$HOME/.zvm/bin"
 set -gx PATH $PATH "$ZVM_INSTALL/"
-source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
-source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+if test -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+    source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+end
+if test -e /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+    source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+end
+
+# Pi
+fish_add_path "$HOME/.local/bin"
+
+function yazi
+    set tmp (mktemp -t "yazi-cwd.XXXXXX")
+    command yazi $argv --cwd-file="$tmp"
+    if set cwd (command cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
+        cd -- "$cwd"
+    end
+    rm -f -- "$tmp"
+end
