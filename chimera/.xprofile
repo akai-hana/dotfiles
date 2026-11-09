@@ -26,11 +26,9 @@ $EUDAIMONIA/lenovo-legion/argyll/bin/dispwin $EUDAIMONIA/lenovo-legion/Lenovo-Le
 ## randomized wallpaper from a selection (deprecated)
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
 
-## compositing for transparency and gaussian blur
-picom &
+## shader wallpaper
+chrysanth &
 
-## shader wallpaper randomized from a selection
-$EUDAIMONIA/shader-wallpaper/shadow/scripts/shader-start.sh &
 # auto-pause/resume shader rendering and compositing if fullscreen or inside a game to avoid latency/input lag
 #~/.scripts/shader-fullscreen-pause.sh &
 
