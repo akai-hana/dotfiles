@@ -27,7 +27,7 @@ $EUDAIMONIA/lenovo-legion/argyll/bin/dispwin $EUDAIMONIA/lenovo-legion/Lenovo-Le
 #feh --bg-center --randomize ~/wallpapers/milk-outside-a-bag-of-milk/original-game &
 
 ## shader wallpaper
-chrysanth &
+doas chrysanth &
 
 # auto-pause/resume shader rendering and compositing if fullscreen or inside a game to avoid latency/input lag
 #~/.scripts/shader-fullscreen-pause.sh &
