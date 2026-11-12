@@ -90,6 +90,9 @@ Plug 'gko/vim-coloresque' " ?
 " buffer-local commands always exist in markdown buffers)
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
 
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript' " Needed if you work with .tsx / React files
+
 call plug#end()
 
 let mapleader = "\<Space>"
