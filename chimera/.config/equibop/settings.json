@@ -6,5 +6,6 @@
     "splashBackground": "rgb(0, 0, 0)",
     "spellCheckLanguages": [
         "en-US"
-    ]
+    ],
+    "hardwareVideoAcceleration": true
 }

@@ -1,7 +1,7 @@
 {
     "autoUpdate": true,
     "autoUpdateNotification": true,
-    "useQuickCss": false,
+    "useQuickCss": true,
     "themeLinks": [],
     "eagerPatches": false,
     "enabledThemes": [],
@@ -13,7 +13,7 @@
     "enableReactDevtools": false,
     "mainWindowFrameless": true,
     "frameless": false,
-    "transparent": false,
+    "transparent": true,
     "winCtrlQ": false,
     "disableMinSize": false,
     "winNativeTitleBar": false,
@@ -1259,7 +1259,8 @@
         },
         "NoTrack": {
             "enabled": true,
-            "disableAnalytics": true
+            "disableAnalytics": true,
+            "allowBadgeTracking": true
         },
         "Settings": {
             "enabled": true,
@@ -1331,7 +1332,8 @@
             "noOnboarding": false,
             "enableAutoCorrect": false,
             "disableHolidayNotifications": false,
-            "showAllBadges": false
+            "showAllBadges": false,
+            "gifPickerTyping": false
         },
         "FavoriteAnything": {
             "enabled": false
@@ -1353,6 +1355,18 @@
         },
         "ExpressionManager": {
             "enabled": false
+        },
+        "BetterSearch": {
+            "enabled": false
+        },
+        "MutedServersActivityBadge": {
+            "enabled": false
+        },
+        "BetterMutualServers": {
+            "enabled": false
+        },
+        "DuplicateCategory": {
+            "enabled": false
         }
     },
     "uiElements": {
@@ -1370,7 +1384,7 @@
         "authenticated": true,
         "url": "https://cloud.equicord.org/",
         "settingsSync": true,
-        "settingsSyncVersion": 1793484483378
+        "settingsSyncVersion": 1794582965555
     },
     "ignoreResetWarning": false,
     "userCssVars": {},

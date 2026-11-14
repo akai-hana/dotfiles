@@ -1,0 +1,83 @@
+:root,
+.theme-dark {
+    /* Custom hex opacity variables */
+    --background-chat: #0d0d1440;     /* 25% opacity */
+    --background-rest: #0d0d14C0;     /* 50% opacity */
+    --background-settings: #0d0d14e0; /* 88% opacity for readable settings */
+
+    --tint-subtle: #ffffff0a;
+    --tint-medium: #ffffff14;
+    --tint-strong: #ffffff1f;
+
+    /* Base transparency flags (kept transparent so layers don't stack) */
+    --background-primary: transparent;
+    --background-secondary: transparent;
+    --background-tertiary: transparent;
+    --background-secondary-alt: transparent;
+    --background-floating: var(--background-rest);
+    --background-nested-floating: var(--background-rest);
+    
+    --bg-base-primary: transparent;
+    --bg-base-secondary: transparent;
+    --bg-base-tertiary: transparent;
+    --background-base-low: transparent;
+    --background-base-lower: transparent;
+    --background-base-lowest: transparent;
+
+    /* Hover, active, and selected modifiers */
+    --background-modifier-hover: var(--tint-subtle);
+    --background-modifier-active: var(--tint-medium);
+    --background-modifier-selected: var(--tint-strong);
+    --background-modifier-accent: var(--tint-medium);
+    --background-message-hover: var(--background-chat);
+
+    /* Overlay variables */
+    --bg-overlay-1: transparent;
+    --bg-overlay-2: var(--tint-subtle);
+    --bg-overlay-3: var(--tint-medium);
+    --bg-overlay-4: var(--tint-strong);
+    --bg-overlay-5: var(--background-rest);
+    --bg-overlay-floating: var(--background-rest);
+    --bg-overlay-chat: transparent;
+    --bg-overlay-app-frame: transparent;
+
+    /* Misc surfaces */
+    --channeltextarea-background: var(--background-chat);
+    --input-background: var(--background-rest);
+    --background-code: var(--background-rest);
+    --textbox-markdown-syntax: #ffffff66;
+
+    /* Scrollbars */
+    --scrollbar-thin-thumb: var(--tint-strong);
+    --scrollbar-thin-track: transparent;
+    --scrollbar-auto-thumb: var(--tint-strong);
+    --scrollbar-auto-track: transparent;
+    --scrollbar-auto-scrollbar-color-thumb: var(--tint-strong);
+    --scrollbar-auto-scrollbar-color-track: transparent;
+}
+
+/* Outer frame stays clear */
+[class*="app_"],
+[class*="bg_"] {
+    background: transparent !important;
+}
+
+/* 25% Opacity: Chat area */
+[class*="chatContent_"] {
+    background: var(--background-chat) !important;
+}
+
+/* 50% Opacity: Server list, channel/DM sidebar, member list, and top bar */
+[class*="guilds_"],
+[class*="sidebar_"],
+[class*="membersWrap_"],
+[class*="title_"][class*="container_"] {
+    background: var(--background-rest) !important;
+}
+
+/* Readable Settings screen */
+[role="dialog"][aria-label*="Settings"],
+[class*="standardSidebarView_"] {
+    background-color: var(--background-settings) !important;
+    backdrop-filter: blur(14px) !important;
+}
