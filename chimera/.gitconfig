@@ -26,6 +26,7 @@
 	directory = /home/akai/eudaimonia/shader-wallpaper
 	directory = /home/akai/eudaimonia/milk-cursor
 	directory = /home/akai/eudaimonia/dotfiles
+	directory = /home/akai/git/shirolyzer
 [pull]
 	rebase = true
 [core]

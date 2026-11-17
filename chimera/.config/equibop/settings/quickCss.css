@@ -35,7 +35,7 @@
     --channeltextarea-background: var(--background-chat);
     --input-background: var(--background-chat);
     --background-code: var(--background-chat);
-    --textbox-markdown-syntax: #ffffff66;
+    --textbox-markdown-syntax: #ffffff00;
 
     /* Scrollbars */
 
@@ -78,4 +78,3 @@ main[class^="chatContent_"] {
     background: var(--background-settings) !important;
     backdrop-filter: var(--settings-blur) !important;
 }
-/
