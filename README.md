@@ -19,13 +19,6 @@ minimal rice based on the game [Milk outside a bag of milk outside a bag of milk
 
 ---
 
-## preview
-
-> *Soon™*
-> <!-- TODO: place video link here -->
-
----
-
 ## installation
 
 ### <img src="https://raw.githubusercontent.com/akai-hana/assets/main/GitHub.svg" width="25" height="25"> cloning
