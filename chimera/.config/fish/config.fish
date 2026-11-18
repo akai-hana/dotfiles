@@ -112,6 +112,7 @@ abbr -a gmm "set -l b (git branch --show-current); git push origin \$b; git chec
 abbr gs  "git stash"
 abbr gsp "git stash pop"
 abbr gsd "git stash drop"
+abbr vpn "doas ip netns exec vpn-ns openvpn --config ~/vpn/"
 
 alias github "https://github.com"
 alias gitlab "https://gitlab.com"
