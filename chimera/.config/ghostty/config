@@ -13,8 +13,7 @@ window-padding-x  = 0
 
 gtk-titlebar = false
 
-background-opacity = 1
-# background-opacity = 0.50
+background-opacity = 0.5
 
 confirm-close-surface = false
 resize-overlay = never
