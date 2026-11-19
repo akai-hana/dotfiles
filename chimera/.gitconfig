@@ -27,6 +27,7 @@
 	directory = /home/akai/eudaimonia/milk-cursor
 	directory = /home/akai/eudaimonia/dotfiles
 	directory = /home/akai/git/shirolyzer
+	directory = /home/akai/git/akai-linux-kernel
 [pull]
 	rebase = true
 [core]
