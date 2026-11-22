@@ -1367,6 +1367,10 @@
         },
         "DuplicateCategory": {
             "enabled": false
+        },
+        "BetterYouTubeEmbeds": {
+            "enabled": true,
+            "youtubeDescription": true
         }
     },
     "uiElements": {
@@ -1384,11 +1388,12 @@
         "authenticated": true,
         "url": "https://cloud.equicord.org/",
         "settingsSync": true,
-        "settingsSyncVersion": 1794582965555
+        "settingsSyncVersion": 1795348340849
     },
     "ignoreResetWarning": false,
     "userCssVars": {},
     "windowsMaterial": "none",
     "nativeTitleBar": false,
-    "noRoundCorners": false
+    "noRoundCorners": false,
+    "enableBackgroundRendering": false
 }
