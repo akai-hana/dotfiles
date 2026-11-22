@@ -1,5 +1,8 @@
 source $VIMRUNTIME/defaults.vim
 
+" respect .editorconfig files
+packadd! editorconfig
+
 syntax on
 set nomodeline
 set background=dark
@@ -154,3 +157,6 @@ function! OpenMarkdownPreview(url) abort
   call system('xdg-open ' . shellescape(a:url) . ' >/dev/null 2>&1 &')
 endfunction
 let g:mkdp_browserfunc = 'OpenMarkdownPreview'
+
+" quick'n'dirty patch to avoid screen desyncs on live servers messing with vim atomicity
+autocmd BufWritePost * redraw!
